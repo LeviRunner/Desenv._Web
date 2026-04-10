@@ -31,6 +31,7 @@
 		<strong>Menu de Navegação:</strong> 
 		<a href="#inicio">Início</a> | 
 		<a href="#tags">Tags HTML</a> | 
+		<a href="#formularios">Formulários</a> | 
 		<a href="#tabelas">Tabelas</a> | 
 		<a href="#listas">Listas</a>
 	</nav>
@@ -163,7 +164,7 @@
 			</ul>
 		</section>
 
-		<!-- SEÇÃO 3: Listas -->
+		<!-- SEÇÃO 4: Listas -->
 		<section id="listas">
 			<h2>4. Tipos de Listas em HTML</h2>
 
@@ -209,9 +210,166 @@
 			</dl>
 		</section>
 
-		<!-- SEÇÃO 4: Tabelas -->
+		<!-- SEÇÃO 4: Formulários -->
+		<section id="formularios">
+			<h2>5. Formulários HTML</h2>
+			<p>Os formulários são elementos fundamentais para coletar dados do usuário. Veja as tags principais:</p>
+
+			<!-- Descrição das Tags de Formulário -->
+			<h3>5.1 Tags de Formulário</h3>
+			<table border="1" style="width: 100%; text-align: left;">
+				<thead>
+					<tr style="background-color: #1a5490; color: white;">
+						<th>Tag</th>
+						<th>Descrição</th>
+						<th>Uso</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><strong>&lt;form&gt;</strong></td>
+						<td>Container principal do formulário.</td>
+						<td>Envolve todos os campos do formulário</td>
+					</tr>
+					<tr>
+						<td><strong>&lt;input&gt;</strong></td>
+						<td>Campo do formulário. Usa o atributo "type" para informar o tipo a ser utilizado.</td>
+						<td>text, email, password, number, date, etc.</td>
+					</tr>
+					<tr>
+						<td><strong>&lt;textarea&gt;</strong></td>
+						<td>Campo de texto de múltiplas linhas.</td>
+						<td>Comentários, mensagens longas</td>
+					</tr>
+					<tr>
+						<td><strong>&lt;select&gt; e &lt;option&gt;</strong></td>
+						<td>Campos de seleção. &lt;select&gt; é o container e &lt;option&gt; são os itens.</td>
+						<td>Listas suspensas</td>
+					</tr>
+					<tr>
+						<td><strong>&lt;button&gt;</strong></td>
+						<td>Campo de botão que permite executar ações – enviar, limpar, etc.</td>
+						<td>submit, reset, button</td>
+					</tr>
+					<tr>
+						<td><strong>&lt;label&gt;</strong></td>
+						<td>Define um título ou legenda que descreve para que serve cada campo.</td>
+						<td>Associar texto aos campos</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- Exemplo Prático de Formulário -->
+			<h3>5.2 Exemplo Prático: Formulário de Contato</h3>
+			<p>Formulário completo com diferentes tipos de campos:</p>
+
+			<form style="background-color: #f5f5f5; padding: 20px; border-radius: 5px; max-width: 500px;">
+				<!-- Campo de Texto Simples -->
+				<div style="margin-bottom: 15px;">
+					<label for="nome" style="display: block; margin-bottom: 5px; font-weight: bold;">Nome Completo:</label>
+					<input type="text" id="nome" name="nome" placeholder="Digite seu nome" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+				</div>
+
+				<!-- Campo de Email -->
+				<div style="margin-bottom: 15px;">
+					<label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email:</label>
+					<input type="email" id="email" name="email" placeholder="seu@email.com" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+				</div>
+
+				<!-- Campo de Telefone -->
+				<div style="margin-bottom: 15px;">
+					<label for="telefone" style="display: block; margin-bottom: 5px; font-weight: bold;">Telefone:</label>
+					<input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+				</div>
+
+				<!-- Campo de Seleção (Dropdown) -->
+				<div style="margin-bottom: 15px;">
+					<label for="assunto" style="display: block; margin-bottom: 5px; font-weight: bold;">Assunto:</label>
+					<select id="assunto" name="assunto" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+						<option>Selecione uma opção</option>
+						<option>Dúvida sobre HTML</option>
+						<option>Dúvida sobre CSS</option>
+						<option>Dúvida sobre JavaScript</option>
+						<option>Sugestão</option>
+						<option>Outro</option>
+					</select>
+				</div>
+
+				<!-- Campo de Texto Múltiplas Linhas -->
+				<div style="margin-bottom: 15px;">
+					<label for="mensagem" style="display: block; margin-bottom: 5px; font-weight: bold;">Mensagem:</label>
+					<textarea id="mensagem" name="mensagem" rows="5" placeholder="Digite sua mensagem aqui..." style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: Arial, sans-serif;"></textarea>
+				</div>
+
+				<!-- Campo de Checkbox -->
+				<div style="margin-bottom: 15px;">
+					<label style="font-weight: bold;">
+						<input type="checkbox" name="concordo" value="sim"> 
+						Concordo em receber notificações por email
+					</label>
+				</div>
+
+				<!-- Campo de Radio -->
+				<div style="margin-bottom: 15px;">
+					<label style="display: block; margin-bottom: 5px; font-weight: bold;">Prioridade:</label>
+					<label>
+						<input type="radio" name="prioridade" value="baixa"> Baixa
+					</label>
+					<label style="margin-left: 15px;">
+						<input type="radio" name="prioridade" value="media"> Média
+					</label>
+					<label style="margin-left: 15px;">
+						<input type="radio" name="prioridade" value="alta"> Alta
+					</label>
+				</div>
+
+				<!-- Botões do Formulário -->
+				<div style="display: flex; gap: 10px;">
+					<button type="submit" style="flex: 1; padding: 10px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Enviar</button>
+					<button type="reset" style="flex: 1; padding: 10px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Limpar</button>
+				</div>
+			</form>
+
+			<!-- Exemplos Adicionais de Tipos de Input -->
+			<h3>5.3 Tipos Adicionais de &lt;input&gt;</h3>
+			<p>O atributo "type" oferece várias opções para diferentes tipos de dados:</p>
+
+			<form style="background-color: #f5f5f5; padding: 20px; border-radius: 5px; max-width: 500px;">
+				<div style="margin-bottom: 15px;">
+					<label for="data" style="display: block; margin-bottom: 5px; font-weight: bold;">Data:</label>
+					<input type="date" id="data" name="data" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+				</div>
+
+				<div style="margin-bottom: 15px;">
+					<label for="hora" style="display: block; margin-bottom: 5px; font-weight: bold;">Hora:</label>
+					<input type="time" id="hora" name="hora" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+				</div>
+
+				<div style="margin-bottom: 15px;">
+					<label for="numero" style="display: block; margin-bottom: 5px; font-weight: bold;">Número (0-100):</label>
+					<input type="number" id="numero" name="numero" min="0" max="100" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+				</div>
+
+				<div style="margin-bottom: 15px;">
+					<label for="range" style="display: block; margin-bottom: 5px; font-weight: bold;">Seletor de Intervalo:</label>
+					<input type="range" id="range" name="range" min="0" max="100" style="width: 100%;">
+				</div>
+
+				<div style="margin-bottom: 15px;">
+					<label for="cor" style="display: block; margin-bottom: 5px; font-weight: bold;">Seletor de Cor:</label>
+					<input type="color" id="cor" name="cor" style="width: 60px; height: 40px; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">
+				</div>
+
+				<div style="margin-bottom: 15px;">
+					<label for="arquivo" style="display: block; margin-bottom: 5px; font-weight: bold;">Enviar Arquivo:</label>
+					<input type="file" id="arquivo" name="arquivo" style="padding: 8px;">
+				</div>
+			</form>
+		</section>
+
+		<!-- SEÇÃO 5: Tabelas -->
 		<section id="tabelas">
-			<h2>5. Tabelas HTML</h2>
+			<h2>6. Tabelas HTML</h2>
 			<p>As tabelas são usadas para apresentar dados tabulares de forma organizada.</p>
 
 			<!-- Tabela Simples -->

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listas - Portal de Tecnologia</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .list-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .list-example {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            border-left: 4px solid #1a5490;
+        }
+
+        .list-example h5 {
+            margin-top: 0;
+            color: #1a5490;
+        }
+
+        .list-example pre {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow-x: auto;
+        }
+
+        .list-example code {
+            font-size: 12px;
+        }
+
+        /* Estilos para listas customizadas */
+        .custom-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .custom-list li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .custom-list li:before {
+            position: absolute;
+            left: 0;
+        }
+
+        .icons-list li:before {
+            content: "→";
+            color: #1a5490;
+            font-weight: bold;
+        }
+
+        .checkmark-list li:before {
+            content: "✓";
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .star-list li:before {
+            content: "★";
+            color: #ffc107;
+        }
+
+        .dot-list {
+            list-style: disc;
+            padding-left: 25px;
+        }
+
+        .number-list {
+            list-style: decimal;
+            padding-left: 25px;
+        }
+
+        .letter-list {
+            list-style: lower-alpha;
+            padding-left: 25px;
+        }
+
+        .nested-list {
+            padding-left: 25px;
+        }
+
+        .nested-list li {
+            margin-bottom: 8px;
+        }
+
+        .nested-list ul,
+        .nested-list ol {
+            margin: 10px 0 10px 20px;
+        }
+
+        .mixed-demo {
+            background-color: #f0f7ff;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .list-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== HEADER FIXO ===== -->
+    <header>
+        <div class="header-left">
+            <h1>🚀 TechHub</h1>
+            <p>Centro de aprendizado de desenvolvimento web</p>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar na página..." aria-label="Pesquisar">
+            <button type="button">🔍</button>
+        </div>
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    </header>
+
+    <!-- ===== MENU FLUTUANTE ===== -->
+    <aside class="floating-menu">
+        <button class="menu-close" aria-label="Fechar menu">✕</button>
+        <nav>
+            <a href="index.html">🏠 Início</a>
+            <a href="tags.html">📝 Tags HTML</a>
+            <a href="formularios.html">📋 Formulários</a>
+            <a href="tabelas.html">📊 Tabelas</a>
+            <a href="listas.html">📑 Listas</a>
+        </nav>
+    </aside>
+
+    <!-- ===== OVERLAY ===== -->
+    <div class="menu-overlay"></div>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main>
+        <nav class="breadcrumb">
+            <a href="index.html">Início</a> /
+            <span>Listas</span>
+        </nav>
+
+        <section id="listas">
+            <h2>5. Listas HTML 📑</h2>
+            
+            <p>
+                Listas são estruturas fundamentais em HTML para organizar e apresentar informações de forma clara e hierárquica. 
+                Existem três tipos principais de listas em HTML.
+            </p>
+
+            <h3>Tipos de Listas HTML</h3>
+
+            <article>
+                <h4>1. Listas Não Ordenadas (<code>&lt;ul&gt;</code>)</h4>
+                <p>
+                    Usadas quando a ordem dos itens não importa. Cada item é precedido por um marcador (bullet).
+                </p>
+
+                <div class="list-comparison">
+                    <div class="list-example">
+                        <h5>Resultado Visual</h5>
+                        <ul class="dot-list">
+                            <li>Maçã</li>
+                            <li>Banana</li>
+                            <li>Laranja</li>
+                            <li>Morango</li>
+                        </ul>
+                    </div>
+
+                    <div class="list-example">
+                        <h5>Código HTML</h5>
+                        <pre><code>&lt;ul&gt;
+  &lt;li&gt;Maçã&lt;/li&gt;
+  &lt;li&gt;Banana&lt;/li&gt;
+  &lt;li&gt;Laranja&lt;/li&gt;
+  &lt;li&gt;Morango&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                    </div>
+                </div>
+            </article>
+
+            <article>
+                <h4>2. Listas Ordenadas (<code>&lt;ol&gt;</code>)</h4>
+                <p>
+                    Usadas quando a ordem dos itens é importante. Cada item é numerado sequencialmente.
+                </p>
+
+                <div class="list-comparison">
+                    <div class="list-example">
+                        <h5>Resultado Visual</h5>
+                        <ol class="number-list">
+                            <li>Prepar os ingredientes</li>
+                            <li>Misturar farinha e açúcar</li>
+                            <li>Adicionar ovos</li>
+                            <li>Assar por 30 minutos</li>
+                        </ol>
+                    </div>
+
+                    <div class="list-example">
+                        <h5>Código HTML</h5>
+                        <pre><code>&lt;ol&gt;
+  &lt;li&gt;Preparar&lt;/li&gt;
+  &lt;li&gt;Misturar&lt;/li&gt;
+  &lt;li&gt;Adicionar&lt;/li&gt;
+  &lt;li&gt;Assar&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                    </div>
+                </div>
+            </article>
+
+            <article>
+                <h4>3. Listas de Descrição (<code>&lt;dl&gt;</code>)</h4>
+                <p>
+                    Usadas para pares de termo e descrição. Útil para glossários, definições e especificações.
+                </p>
+
+                <div class="list-example" style="width: 100%;">
+                    <h5>Exemplo: Glossário Técnico</h5>
+                    <pre><code>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HyperText Markup Language - linguagem de marcação para web&lt;/dd&gt;
+  
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Cascading Style Sheets - linguagem de estilos&lt;/dd&gt;
+  
+  &lt;dt&gt;JavaScript&lt;/dt&gt;
+  &lt;dd&gt;Linguagem de programação para interatividade web&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+                    <h5 style="margin-top: 20px;">Resultado</h5>
+                    <dl>
+                        <dt><strong>HTML</strong></dt>
+                        <dd>HyperText Markup Language - linguagem de marcação para web</dd>
+
+                        <dt><strong>CSS</strong></dt>
+                        <dd>Cascading Style Sheets - linguagem de estilos</dd>
+
+                        <dt><strong>JavaScript</strong></dt>
+                        <dd>Linguagem de programação para interatividade web</dd>
+                    </dl>
+                </div>
+            </article>
+
+            <h3>Listas Aninhadas (Nested Lists)</h3>
+
+            <article>
+                <h4>Combinando Listas</h4>
+                <p>
+                    Você pode colocar uma lista dentro de outra para criar hierarquias.
+                </p>
+
+                <div class="mixed-demo">
+                    <h5>Estrutura de um Projeto Web</h5>
+                    <ol class="nested-list">
+                        <li>Planejamento
+                            <ul>
+                                <li>Definir objetivos</li>
+                                <li>Identificar público-alvo</li>
+                                <li>Criar wireframes</li>
+                            </ul>
+                        </li>
+                        <li>Design
+                            <ul>
+                                <li>Criar mockups</li>
+                                <li>Definir paleta de cores</li>
+                                <li>Selecionar tipografia</li>
+                            </ul>
+                        </li>
+                        <li>Desenvolvimento
+                            <ul>
+                                <li>Frontend (HTML/CSS/JS)</li>
+                                <li>Backend (Servidor/BD)</li>
+                                <li>Testes</li>
+                            </ul>
+                        </li>
+                        <li>Deployment
+                            <ul>
+                                <li>Configurar servidor</li>
+                                <li>Fazer deploy</li>
+                                <li>Monitorar performance</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </article>
+
+            <h3>Personalizando Listas com CSS</h3>
+
+            <article>
+                <h4>Lista com Setas Personalizadas</h4>
+                <p>Usando CSS para criar marcadores customizados:</p>
+
+                <ul class="icons-list">
+                    <li>Primeira vantagem do serviço</li>
+                    <li>Segunda vantagem do serviço</li>
+                    <li>Terceira vantagem do serviço</li>
+                    <li>Quarta vantagem do serviço</li>
+                </ul>
+
+                <pre><code>.icons-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.icons-list li {
+    padding-left: 25px;
+    position: relative;
+}
+
+.icons-list li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #1a5490;
+}</code></pre>
+            </article>
+
+            <article>
+                <h4>Lista com Checkmarks</h4>
+                <p>Para listas de tarefas concluídas ou requisitos atendidos:</p>
+
+                <ul class="checkmark-list">
+                    <li>Validação de email implementada</li>
+                    <li>Sistema de segurança ativo</li>
+                    <li>Responsivo em todos os dispositivos</li>
+                    <li>Acessibilidade WCAG 2.1</li>
+                    <li>Performance otimizada</li>
+                </ul>
+            </article>
+
+            <article>
+                <h4>Lista com Estrelas</h4>
+                <p>Para classificações ou destaque especial:</p>
+
+                <ul class="star-list">
+                    <li>Recurso Premium 1</li>
+                    <li>Recurso Premium 2</li>
+                    <li>Recurso Premium 3</li>
+                    <li>Recurso Premium 4</li>
+                </ul>
+            </article>
+
+            <h3>Atributos Comuns em Listas</h3>
+
+            <article>
+                <h4><code>&lt;ol&gt;</code> - Atributos Especiais</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Atributo</th>
+                            <th>Descrição</th>
+                            <th>Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>start</code></td>
+                            <td>Número inicial da lista</td>
+                            <td><code>&lt;ol start="5"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>reversed</code></td>
+                            <td>Inverte a ordem dos números</td>
+                            <td><code>&lt;ol reversed&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>type</code></td>
+                            <td>Tipo de numeração</td>
+                            <td><code>&lt;ol type="a"&gt;</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h5 style="margin-top: 20px;">Exemplos de Numeração com type:</h5>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                    <div>
+                        <p><strong>type="1"</strong> (padrão):</p>
+                        <ol style="margin: 0;">
+                            <li>Primeiro</li>
+                            <li>Segundo</li>
+                            <li>Terceiro</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <p><strong>type="A"</strong> (letras maiúsculas):</p>
+                        <ol style="margin: 0;" type="A">
+                            <li>Primeiro</li>
+                            <li>Segundo</li>
+                            <li>Terceiro</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <p><strong>type="a"</strong> (letras minúsculas):</p>
+                        <ol style="margin: 0;" type="a">
+                            <li>Primeiro</li>
+                            <li>Segundo</li>
+                            <li>Terceiro</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <p><strong>type="I"</strong> (romanos maiúsculos):</p>
+                        <ol style="margin: 0;" type="I">
+                            <li>Primeiro</li>
+                            <li>Segundo</li>
+                            <li>Terceiro</li>
+                        </ol>
+                    </div>
+                </div>
+            </article>
+
+            <h3>Boas Práticas para Listas</h3>
+
+            <div class="success-box">
+                <ul>
+                    <li>✅ Use <code>&lt;ul&gt;</code> para itens sem ordem específica</li>
+                    <li>✅ Use <code>&lt;ol&gt;</code> para sequências ou processos</li>
+                    <li>✅ Use <code>&lt;dl&gt;</code> para pares termo-definição</li>
+                    <li>✅ Aninha listas apenas quando necessário para hierarquia</li>
+                    <li>✅ Sempre coloque <code>&lt;li&gt;</code> dentro de <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code> ou <code>&lt;dl&gt;</code></li>
+                    <li>✅ Adicione títulos ou contexto descritivo para listas complexas</li>
+                    <li>✅ Use <code>aria-label</code> ou <code>aria-describedby</code> para acessibilidade</li>
+                    <li>✅ Mantenha listas simples e legíveis</li>
+                    <li>✅ Evite ninhagens muito profundas (máximo 3 níveis)</li>
+                </ul>
+            </div>
+
+            <h3>Exemplo Prático Completo</h3>
+
+            <article>
+                <h4>Estrutura de um Menu com Submenu</h4>
+                <pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Início&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="/servicos"&gt;Serviços&lt;/a&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="/servicos/design"&gt;Design&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/servicos/dev"&gt;Desenvolvimento&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/servicos/seo"&gt;SEO&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href="/contato"&gt;Contato&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+            </article>
+
+            <aside>
+                <strong>💡 Dica:</strong> 
+                Listas são muito importantes para SEO e acessibilidade. Um bom uso de listas melhora 
+                a legibilidade para humanos e máquinas!
+            </aside>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 TechHub - Portal de Desenvolvimento Web. Todos os direitos reservados.</p>
+        <p>Desenvolvido com ❤️ para educadores e alunos</p>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="script.js"></script>
+</body>
+
+</html>

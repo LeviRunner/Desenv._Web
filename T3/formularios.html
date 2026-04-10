@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários - Portal de Tecnologia</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+        }
+
+        form fieldset {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+
+        form legend {
+            padding: 0 10px;
+            font-weight: bold;
+            color: #1a5490;
+        }
+
+        form label {
+            display: block;
+            margin: 10px 0 5px 0;
+            font-weight: 500;
+            color: #333;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="password"],
+        form input[type="number"],
+        form input[type="date"],
+        form input[type="tel"],
+        form input[type="url"],
+        form textarea,
+        form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        form input[type="radio"],
+        form input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        form input[type="radio"] + label,
+        form input[type="checkbox"] + label {
+            display: inline;
+            margin-left: 5px;
+            font-weight: normal;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            margin: 10px 0;
+        }
+
+        .radio-group label,
+        .checkbox-group label {
+            display: block;
+            margin: 8px 0;
+            font-weight: normal;
+        }
+
+        form button {
+            padding: 12px 30px;
+            background-color: #1a5490;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+
+        form button:hover {
+            background-color: #0d3d6f;
+        }
+
+        form button[type="reset"] {
+            background-color: #999;
+        }
+
+        form button[type="reset"]:hover {
+            background-color: #777;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #1a5490;
+            box-shadow: 0 0 5px rgba(26, 84, 144, 0.3);
+        }
+
+        .required::after {
+            content: " *";
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== HEADER FIXO ===== -->
+    <header>
+        <div class="header-left">
+            <h1>🚀 TechHub</h1>
+            <p>Centro de aprendizado de desenvolvimento web</p>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar na página..." aria-label="Pesquisar">
+            <button type="button">🔍</button>
+        </div>
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    </header>
+
+    <!-- ===== MENU FLUTUANTE ===== -->
+    <aside class="floating-menu">
+        <button class="menu-close" aria-label="Fechar menu">✕</button>
+        <nav>
+            <a href="index.html">🏠 Início</a>
+            <a href="tags.html">📝 Tags HTML</a>
+            <a href="formularios.html">📋 Formulários</a>
+            <a href="tabelas.html">📊 Tabelas</a>
+            <a href="listas.html">📑 Listas</a>
+        </nav>
+    </aside>
+
+    <!-- ===== OVERLAY ===== -->
+    <div class="menu-overlay"></div>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main>
+        <nav class="breadcrumb">
+            <a href="index.html">Início</a> /
+            <span>Formulários</span>
+        </nav>
+
+        <section id="formularios">
+            <h2>3. Formulários HTML 📋</h2>
+            
+            <p>
+                Formulários são elementos essenciais para coletar dados dos usuários. 
+                Eles permitem interatividade e comunicação entre o usuário e a aplicação web.
+            </p>
+
+            <h3>Elementos Básicos de um Formulário</h3>
+
+            <article>
+                <h4>Estrutura de um Formulário</h4>
+                <p>
+                    Um formulário é delimitado pela tag <code>&lt;form&gt;</code> e contém diversos campos de entrada.
+                </p>
+                <pre><code>&lt;form action="/processar" method="POST"&gt;
+    &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+    &lt;input type="text" id="nome" name="nome"&gt;
+    &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </article>
+
+            <article>
+                <h4>Atributos Importantes da Tag Form</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Atributo</th>
+                            <th>Descrição</th>
+                            <th>Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>action</code></td>
+                            <td>URL para processar o formulário</td>
+                            <td><code>action="/formulario"</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>method</code></td>
+                            <td>Método HTTP: GET ou POST</td>
+                            <td><code>method="POST"</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>name</code></td>
+                            <td>Nome único do formulário</td>
+                            <td><code>name="meuFormulario"</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>enctype</code></td>
+                            <td>Tipo de codificação dos dados</td>
+                            <td><code>enctype="multipart/form-data"</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+
+            <h3>Tipos de Entrada</h3>
+
+            <article>
+                <h4>Exemplo Prático: Formulário Completo</h4>
+                <form action="#" method="POST" onsubmit="return validarFormulario(event)">
+                    <fieldset>
+                        <legend>Informações Pessoais</legend>
+
+                        <div class="form-group">
+                            <label for="fullname" class="required">Nome Completo</label>
+                            <input type="text" id="fullname" name="fullname" required 
+                                   placeholder="Digite seu nome completo">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="required">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                   placeholder="seu@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telephone">Telefone</label>
+                            <input type="tel" id="telephone" name="telephone" 
+                                   placeholder="(XX) XXXXX-XXXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="website">Site Pessoal</label>
+                            <input type="url" id="website" name="website" 
+                                   placeholder="https://seu-site.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="birthdate">Data de Nascimento</label>
+                            <input type="date" id="birthdate" name="birthdate">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Credenciais</legend>
+
+                        <div class="form-group">
+                            <label for="password" class="required">Senha</label>
+                            <input type="password" id="password" name="password" required 
+                                   minlength="8" placeholder="Mínimo 8 caracteres">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmpassword" class="required">Confirmar Senha</label>
+                            <input type="password" id="confirmpassword" name="confirmpassword" required 
+                                   minlength="8" placeholder="Confirme a senha">
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Preferências</legend>
+
+                        <div class="radio-group">
+                            <p><strong>Nível de Experiência:</strong></p>
+                            <input type="radio" id="iniciante" name="experiencia" value="iniciante" checked>
+                            <label for="iniciante">Iniciante</label><br>
+
+                            <input type="radio" id="intermediario" name="experiencia" value="intermediario">
+                            <label for="intermediario">Intermediário</label><br>
+
+                            <input type="radio" id="avancado" name="experiencia" value="avancado">
+                            <label for="avancado">Avançado</label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <p><strong>Tecnologias de Interesse:</strong></p>
+                            <input type="checkbox" id="html" name="tech" value="html">
+                            <label for="html">HTML</label><br>
+
+                            <input type="checkbox" id="css" name="tech" value="css">
+                            <label for="css">CSS</label><br>
+
+                            <input type="checkbox" id="javascript" name="tech" value="javascript">
+                            <label for="javascript">JavaScript</label><br>
+
+                            <input type="checkbox" id="php" name="tech" value="php">
+                            <label for="php">PHP</label><br>
+
+                            <input type="checkbox" id="python" name="tech" value="python">
+                            <label for="python">Python</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Dados Adicionais</legend>
+
+                        <div class="form-group">
+                            <label for="country">País</label>
+                            <select id="country" name="country">
+                                <option value="">-- Selecione um país --</option>
+                                <option value="br">Brasil</option>
+                                <option value="pt">Portugal</option>
+                                <option value="ao">Angola</option>
+                                <option value="mx">México</option>
+                                <option value="es">Espanha</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">Comentários</label>
+                            <textarea id="comments" name="comments" 
+                                      placeholder="Digite aqui seus comentários..."></textarea>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms" class="required">Aceito os termos e condições</label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <label for="newsletter">Desejo receber newsletters</label>
+                        </div>
+                    </fieldset>
+
+                    <div style="margin-top: 30px;">
+                        <button type="submit">✓ Enviar Formulário</button>
+                        <button type="reset">↻ Limpar Campos</button>
+                    </div>
+                </form>
+            </article>
+
+            <h3>Tipos de Input Disponíveis</h3>
+
+            <article>
+                <h4>Tabela de Tipos de Input</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th>Exemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>text</code></td>
+                            <td>Campo de texto simples</td>
+                            <td><code>&lt;input type="text"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>email</code></td>
+                            <td>Campo de email com validação</td>
+                            <td><code>&lt;input type="email"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>password</code></td>
+                            <td>Campo de senha (mascarado)</td>
+                            <td><code>&lt;input type="password"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>number</code></td>
+                            <td>Campo para números</td>
+                            <td><code>&lt;input type="number"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>date</code></td>
+                            <td>Seletor de data</td>
+                            <td><code>&lt;input type="date"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>radio</code></td>
+                            <td>Seleção única em grupo</td>
+                            <td><code>&lt;input type="radio"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>checkbox</code></td>
+                            <td>Múltiplas seleções</td>
+                            <td><code>&lt;input type="checkbox"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>submit</code></td>
+                            <td>Botão para enviar</td>
+                            <td><code>&lt;input type="submit"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>reset</code></td>
+                            <td>Botão para limpar</td>
+                            <td><code>&lt;input type="reset"&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>file</code></td>
+                            <td>Upload de arquivo</td>
+                            <td><code>&lt;input type="file"&gt;</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+
+            <h3>Dicas para Criar Formulários Acessíveis</h3>
+            <div class="success-box">
+                <ul>
+                    <li>✅ Sempre use <code>&lt;label&gt;</code> associada com <code>for</code> e <code>id</code></li>
+                    <li>✅ Use <code>fieldset</code> e <code>legend</code> para agrupar campos</li>
+                    <li>✅ Adicione atributo <code>required</code> em campos obrigatórios</li>
+                    <li>✅ Use tipos de input específicos (<code>email</code>, <code>tel</code>, <code>date</code>, etc)</li>
+                    <li>✅ Adicione placeholders descritivos</li>
+                    <li>✅ Indique campos obrigatórios visualmente com asterisco (*)</li>
+                    <li>✅ Use mensagens de erro claras e construtivas</li>
+                    <li>✅ Teste com leitores de tela</li>
+                </ul>
+            </div>
+
+            <aside>
+                <strong>💡 Dica:</strong> 
+                Sempre valide os dados no servidor, mesmo que faça validação no cliente. 
+                Nunca confie apenas em validações do lado do cliente!
+            </aside>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 TechHub - Portal de Desenvolvimento Web. Todos os direitos reservados.</p>
+        <p>Desenvolvido com ❤️ para educadores e alunos</p>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        function validarFormulario(event) {
+            const senha = document.getElementById('password').value;
+            const confirmasenha = document.getElementById('confirmpassword').value;
+
+            if (senha !== confirmasenha) {
+                alert('As senhas não conferem!');
+                return false;
+            }
+
+            alert('Formulário válido! (Este é um exemplo - dados não foram realmente enviados)');
+            return false; // Impede envio real
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
