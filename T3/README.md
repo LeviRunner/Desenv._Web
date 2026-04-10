@@ -26,7 +26,7 @@ T3/
   - **Barra de pesquisa** com botão de busca
   - Botão de menu (responsivo em mobile)
 
-### 2. **Menu Flutuante** 🎯
+### 2. **Menu Flutuante**
 - Sidebar animado na lateral esquerda
 - 5 links de navegação principais:
   - 🏠 Início
@@ -59,7 +59,7 @@ Cada tópico em sua própria página:
 - **tabelas.html**: Exemplos de tabelas estruturadas
 - **listas.html**: Diferentes tipos de listas e personalizações
 
-## 🎨 Funcionalidades CSS
+## Funcionalidades CSS
 
 ```css
 /* Header Fixo */
@@ -128,7 +128,7 @@ header {
   - Toque para abrir o menu flutuante
   - Barra de pesquisa adapta-se
 
-## 🎯 Estrutura HTML Utilizada
+## Estrutura HTML Utilizada
 
 Cada página usa tags semânticas:
 ```html
