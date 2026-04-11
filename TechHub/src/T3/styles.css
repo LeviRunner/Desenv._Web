@@ -650,6 +650,40 @@ li {
     color: #333;
 }
 
+/* ===== CAMPO DE TELEFONE COM CÓDIGO DO PAÍS ===== */
+.telefone-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.codigo-pais {
+    min-width: 50px;
+    padding: 12px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.telefone-group input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 0 4px 4px 0;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: border-color 0.3s;
+}
+
+.telefone-group input:focus {
+    outline: none;
+    border-color: #1a5490;
+    box-shadow: 0 0 5px rgba(26, 84, 144, 0.3);
+}
+
 /* ===== RESPONSIVO REGISTRO ===== */
 @media (max-width: 768px) {
     .registro-section {

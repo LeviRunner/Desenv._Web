@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - TechHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- ===== HEADER FIXO ===== -->
+    <header>
+        <div class="header-left">
+            <h1>🔐 TechHub - Registro</h1>
+            <p>Centro de aprendizado de desenvolvimento web</p>
+        </div>
+    </header>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main class="registro-container">
+        <section class="registro-section">
+            <div class="registro-card">
+                <h2>📝 Formulário de Registro</h2>
+                
+                <div class="info-box registro-info">
+                    <p>
+                        <strong>Por que registrar?</strong><br>
+                        Registre-se para acessar todas as seções do TechHub, incluindo:
+                    </p>
+                    <ul>
+                        <li>✓ Aprenda sobre Tags HTML Semânticas</li>
+                        <li>✓ Crie Formulários Interativos</li>
+                        <li>✓ Domine Tabelas de Dados</li>
+                        <li>✓ Organize com Listas Estruturadas</li>
+                        <li>✓ Acesso a todo o conteúdo educativo</li>
+                    </ul>
+                </div>
+
+                <form id="formRegistro" class="registro-form">
+                    <div class="form-group">
+                        <label for="nome">
+                            <strong>👤 Nome Completo *</strong>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="nome" 
+                            name="nome" 
+                            placeholder="Digite seu nome completo"
+                            required
+                            minlength="3"
+                        >
+                        <small>Mínimo 3 caracteres</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <strong>📧 Email *</strong>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Digite seu email"
+                            required
+                        >
+                        <small>Exemplo: seu@email.com</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nick">
+                            <strong>🎮 Nick de Usuário *</strong>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="nick" 
+                            name="nick" 
+                            placeholder="Digite seu nick (sem espaços)"
+                            required
+                            minlength="3"
+                            pattern="[a-zA-Z0-9_-]+"
+                        >
+                        <small>Mínimo 3 caracteres, sem espaços</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha">
+                            <strong>🔑 Senha *</strong>
+                        </label>
+                        <input 
+                            type="password" 
+                            id="senha" 
+                            name="senha" 
+                            placeholder="Digite uma senha segura"
+                            required
+                            minlength="6"
+                        >
+                        <small>Mínimo 6 caracteres</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pais">
+                            <strong>🌍 País *</strong>
+                        </label>
+                        <select id="pais" name="pais" required>
+                            <option value="">Selecione um país...</option>
+                            <option value="Brasil">🇧🇷 Brasil</option>
+                            <option value="Portugal">🇵🇹 Portugal</option>
+                            <option value="México">🇲🇽 México</option>
+                            <option value="Argentina">🇦🇷 Argentina</option>
+                            <option value="Chile">🇨🇱 Chile</option>
+                            <option value="Colômbia">🇨🇴 Colômbia</option>
+                            <option value="Peru">🇵🇪 Peru</option>
+                            <option value="Espanha">🇪🇸 Espanha</option>
+                            <option value="Outro">🌐 Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">
+                            <strong>📱 Telefone (Opcional)</strong>
+                        </label>
+                        <div class="telefone-group">
+                            <span id="codigoPais" class="codigo-pais">+55</span>
+                            <input 
+                                type="tel" 
+                                id="telefone" 
+                                name="telefone" 
+                                placeholder="11 99999-9999"
+                            >
+                        </div>
+                        <small>Código do país adicionado automaticamente</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interesse">
+                            <strong>🎯 Seu Principal Interesse *</strong>
+                        </label>
+                        <select id="interesse" name="interesse" required>
+                            <option value="">Selecione uma opção...</option>
+                            <option value="tags">Tags HTML</option>
+                            <option value="formularios">Formulários</option>
+                            <option value="tabelas">Tabelas</option>
+                            <option value="listas">Listas</option>
+                            <option value="todos">Todos os tópicos</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group checkbox">
+                        <input 
+                            type="checkbox" 
+                            id="termos" 
+                            name="termos" 
+                            required
+                        >
+                        <label for="termos">
+                            Concordo com os <strong>Termos de Uso</strong> do TechHub
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-registrar" id="btnRegistrar">
+                        ✓ Criar Conta
+                    </button>
+                </form>
+
+                <div id="mensagemSucesso" class="success-box" style="display: none; margin-top: 20px;">
+                    <strong>✓ Registro realizado com sucesso!</strong><br>
+                    Você será redirecionado para login em alguns segundos...
+                </div>
+
+                <div id="mensagemErro" class="error-box" style="display: none; margin-top: 20px;">
+                    <strong>⚠ Erro no registro!</strong><br>
+                    <span id="textoErro"></span>
+                </div>
+
+                <p class="registro-footer">
+                    <small>Já tem conta? <a href="login.html">Faça login aqui</a></small>
+                </p>
+
+                <p class="registro-footer">
+                    <small>Seus dados serão armazenados com segurança em nosso servidor</small>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="paises-codigos.js"></script>
+    <script>
+        const paisSelect = document.getElementById('pais');
+        const codigoPaisSpan = document.getElementById('codigoPais');
+
+        // Atualizar código do país quando selecionado
+        paisSelect.addEventListener('change', function() {
+            const paisSelecionado = this.value;
+            const codigos = window.paisesCodigos || {};
+            const codigo = codigos[paisSelecionado] || '+55';
+            codigoPaisSpan.textContent = codigo;
+        });
+
+        // Manipular envio do formulário de registro
+        document.getElementById('formRegistro').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const btnRegistrar = document.getElementById('btnRegistrar');
+            const estadoOriginal = btnRegistrar.textContent;
+            btnRegistrar.textContent = '⏳ Registrando...';
+            btnRegistrar.disabled = true;
+
+            // Obter valores do formulário
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const nick = document.getElementById('nick').value.trim();
+            const senha = document.getElementById('senha').value;
+            const telefone = document.getElementById('telefone').value.trim();
+            const interesse = document.getElementById('interesse').value;
+            const pais = document.getElementById('pais').value;
+            const termos = document.getElementById('termos').checked;
+
+            // Validações básicas
+            if (nome.length < 3) {
+                mostrarErro('Nome deve ter no mínimo 3 caracteres');
+                btnRegistrar.textContent = estadoOriginal;
+                btnRegistrar.disabled = false;
+                return;
+            }
+
+            if (!email.includes('@')) {
+                mostrarErro('Email inválido');
+                btnRegistrar.textContent = estadoOriginal;
+                btnRegistrar.disabled = false;
+                return;
+            }
+
+            if (nick.length < 3) {
+                mostrarErro('Nick deve ter no mínimo 3 caracteres');
+                btnRegistrar.textContent = estadoOriginal;
+                btnRegistrar.disabled = false;
+                return;
+            }
+
+            if (senha.length < 6) {
+                mostrarErro('Senha deve ter no mínimo 6 caracteres');
+                btnRegistrar.textContent = estadoOriginal;
+                btnRegistrar.disabled = false;
+                return;
+            }
+
+            if (!termos) {
+                mostrarErro('Você deve concordar com os Termos de Uso');
+                btnRegistrar.textContent = estadoOriginal;
+                btnRegistrar.disabled = false;
+                return;
+            }
+
+            try {
+                // Enviar para servidor
+                const response = await fetch('http://localhost:3000/api/registrar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nome,
+                        email,
+                        nick,
+                        senha,
+                        telefone,
+                        interesse,
+                        pais
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.sucesso) {
+                    // Salvar token no localStorage
+                    localStorage.setItem('tokenTechHub', data.token);
+                    localStorage.setItem('usuarioTechHub', JSON.stringify({
+                        id: data.usuario.id,
+                        nome: data.usuario.nome,
+                        nick: data.usuario.nick,
+                        email: data.usuario.email
+                    }));
+
+                    // Mostrar mensagem de sucesso
+                    document.getElementById('formRegistro').style.display = 'none';
+                    document.getElementById('mensagemSucesso').style.display = 'block';
+
+                    // Redirecionar para login após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                } else {
+                    mostrarErro(data.mensagem || 'Erro ao registrar');
+                    btnRegistrar.textContent = estadoOriginal;
+                    btnRegistrar.disabled = false;
+                }
+
+            } catch (error) {
+                console.error('Erro:', error);
+                mostrarErro('Erro ao conectar ao servidor. Verifique se está rodando.');
+                btnRegistrar.textContent = estadoOriginal;
+                btnRegistrar.disabled = false;
+            }
+        });
+
+        function mostrarErro(mensagem) {
+            document.getElementById('textoErro').textContent = mensagem;
+            document.getElementById('mensagemErro').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('mensagemErro').style.display = 'none';
+            }, 5000);
+        }
+
+        // Se já estiver logado, redirecionar para index
+        window.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('tokenTechHub');
+            if (token) {
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+Para testes rápidos, um usuário já foi pré-criado no sistema!
+
+📝 DADOS DO USUÁRIO DE TESTE:
+
+  Nick:      teste123
+  Senha:     teste123
+  Email:     teste@email.com
+  Nome:      Usuário Teste
+  País:      Brasil (preenchido no REGISTRO)
+  Telefone:  11987654321
+
+═══════════════════════════════════════════════════════════════════
+
+🚀 COMO TESTAR:
+
+1. Inicie o servidor:
+   $ npm start
+
+2. Abra no navegador:
+   http://localhost:3000
+
+3. Clique em "🔐 Registre-se" no menu
+
+4. Em vez de registrar, acesse a página de login:
+   http://localhost:3000/T3/login.html
+
+5. Faça login com:
+   Nick:    teste123
+   Senha:   teste123
+
+6. Aperte "🔓 Fazer Login"
+
+7. Pronto! Você será redirecionado para a página inicial JÁ LOGADO!
+
+8. Agora pode acessar:
+   ✓ Tags HTML
+   ✓ Formulários
+   ✓ Tabelas
+   ✓ Listas
+
+═══════════════════════════════════════════════════════════════════
+
+🔐 NOTA IMPORTANTE:
+
+A senha criptografada no arquivo é:
+$2a$10$N9qo8uLOickgx2ZMRZoMy.lsSVIBVWfDL/bDJchqKH1/MdUxnuHE.
+
+Quando você digita "teste123" no login, o servidor:
+1. Recebe "teste123"
+2. Compara com o hash armazenado
+3. Se for igual, libera acesso
+4. Nunca armazena a senha em texto plano!
+
+═══════════════════════════════════════════════════════════════════
+
+✨ DEPOIS DOS TESTES:
+
+1. Registre você mesmo:
+   - Clique em "🔐 Registre-se"
+   - Preencha seus dados (incluindo PAÍS)
+   - Crie seu próprio Nick e Senha
+   - Será adicionado automático em usuarios.json
+
+2. Faça login com seu novo Nick e Senha (sem precisar de país)
+
+3. Limpe os testes:
+   - Delete a linha do usuário "teste123" de usuarios.json
+
+═══════════════════════════════════════════════════════════════════
+
+🎯 O QUE TESTAR:
+
+✓ Login com teste123 / teste123 (sem país)
+✓ Salvar Nick ("Lembrar meu nick") 
+✓ Acessar páginas protegidas
+✓ Logout e voltar para login
+✓ Tentar acessar sem estar logado
+✓ Registrar novo usuário (com país)
+✓ Listar usuários em usuarios.json
+
+═══════════════════════════════════════════════════════════════════
+
+Divirta-se testando! 🚀

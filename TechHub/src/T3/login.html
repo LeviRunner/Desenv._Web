@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TechHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- ===== HEADER FIXO ===== -->
+    <header>
+        <div class="header-left">
+            <h1>🔓 TechHub - Login</h1>
+            <p>Centro de aprendizado de desenvolvimento web</p>
+        </div>
+    </header>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main class="registro-container">
+        <section class="registro-section">
+            <div class="registro-card">
+                <h2>🔓 Fazer Login</h2>
+                
+                <div class="info-box registro-info">
+                    <p>
+                        <strong>Bem-vindo de volta!</strong><br>
+                        Faça login com seu Nick e Senha para acessar o TechHub e continuar aprendendo.
+                    </p>
+                </div>
+
+                <form id="formLogin" class="registro-form">
+                    <div class="form-group">
+                        <label for="nick">
+                            <strong>🎮 Nick de Usuário *</strong>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="nick" 
+                            name="nick" 
+                            placeholder="Digite seu nick"
+                            required
+                            autocomplete="username"
+                        >
+                        <small>Seu nick de usuário</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha">
+                            <strong>🔑 Senha *</strong>
+                        </label>
+                        <input 
+                            type="password" 
+                            id="senha" 
+                            name="senha" 
+                            placeholder="Digite sua senha"
+                            required
+                            autocomplete="current-password"
+                        >
+                        <small>Sua senha de acesso</small>
+                    </div>
+
+                    <div class="form-group checkbox">
+                        <input 
+                            type="checkbox" 
+                            id="salvarNick" 
+                            name="salvarNick"
+                        >
+                        <label for="salvarNick">
+                            Lembrar meu nick neste navegador
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-registrar" id="btnLogin">
+                        🔓 Fazer Login
+                    </button>
+                </form>
+
+                <div id="mensagemSucesso" class="success-box" style="display: none; margin-top: 20px;">
+                    <strong>✓ Login realizado com sucesso!</strong><br>
+                    Você será redirecionado em alguns segundos...
+                </div>
+
+                <div id="mensagemErro" class="error-box" style="display: none; margin-top: 20px;">
+                    <strong>⚠ Erro no login!</strong><br>
+                    <span id="textoErro"></span>
+                </div>
+
+                <p class="registro-footer" style="margin-top: 30px;">
+                    Ainda não tem conta? <a href="registro.html">Registre-se aqui</a>
+                </p>
+
+                <p class="registro-footer">
+                    <small>Seus dados de login são protegidos e não serão compartilhados</small>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="paises-codigos.js"></script>
+    <script>
+        // Carregar nick salvo localmente ao abrir a página
+        window.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem('tokenTechHub');
+            if (token) {
+                window.location.href = 'index.html';
+            }
+
+            // Verificar se há nick salvo localmente
+            const nickSalvo = localStorage.getItem('nickTechHub');
+            if (nickSalvo) {
+                document.getElementById('nick').value = nickSalvo;
+                document.getElementById('salvarNick').checked = true;
+            }
+        });
+
+        // Manipular envio do formulário de login
+        document.getElementById('formLogin').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const btnLogin = document.getElementById('btnLogin');
+            const estadoOriginal = btnLogin.textContent;
+            btnLogin.textContent = '⏳ Autenticando...';
+            btnLogin.disabled = true;
+
+            const nick = document.getElementById('nick').value.trim();
+            const senha = document.getElementById('senha').value;
+            const salvarNick = document.getElementById('salvarNick').checked;
+
+            if (!nick || !senha) {
+                mostrarErro('Nick e senha são obrigatórios');
+                btnLogin.textContent = estadoOriginal;
+                btnLogin.disabled = false;
+                return;
+            }
+
+            try {
+                // Enviar para servidor
+                const response = await fetch('http://localhost:3000/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nick,
+                        senha
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.sucesso) {
+                    // Salvar token no localStorage
+                    localStorage.setItem('tokenTechHub', data.token);
+                    localStorage.setItem('usuarioTechHub', JSON.stringify({
+                        id: data.usuario.id,
+                        nome: data.usuario.nome,
+                        nick: data.usuario.nick,
+                        email: data.usuario.email,
+                        pais: data.usuario.pais
+                    }));
+
+                    // Salvar nick se solicitado
+                    if (salvarNick) {
+                        localStorage.setItem('nickTechHub', nick);
+                    } else {
+                        localStorage.removeItem('nickTechHub');
+                    }
+
+                    // Mostrar mensagem de sucesso
+                    document.getElementById('formLogin').style.display = 'none';
+                    document.getElementById('mensagemSucesso').style.display = 'block';
+
+                    // Redirecionar para página inicial após 2 segundos
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 2000);
+                } else {
+                    mostrarErro(data.mensagem || 'Erro ao fazer login');
+                    btnLogin.textContent = estadoOriginal;
+                    btnLogin.disabled = false;
+                }
+
+            } catch (error) {
+                console.error('Erro:', error);
+                mostrarErro('Erro ao conectar ao servidor. Verifique se está rodando.');
+                btnLogin.textContent = estadoOriginal;
+                btnLogin.disabled = false;
+            }
+        });
+
+        function mostrarErro(mensagem) {
+            document.getElementById('textoErro').textContent = mensagem;
+            document.getElementById('mensagemErro').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('mensagemErro').style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+
+</html>

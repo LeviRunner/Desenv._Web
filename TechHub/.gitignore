@@ -1,0 +1,7 @@
+node_modules/
+usuarios.json
+.DS_Store
+.vscode/
+*.log
+dist/
+build/

@@ -153,15 +153,15 @@ window.searchFunctions = {
     clearSearchHighlights
 };
 
-// ===== CONTROLE DE ACESSO - VERIFICAÇÃO DE REGISTRO =====
+// ===== CONTROLE DE ACESSO - VERIFICAÇÃO DE AUTENTICAÇÃO =====
 function verificarAcessoUsuario() {
     const paginasProtegidas = ['tags.html', 'formularios.html', 'tabelas.html', 'listas.html'];
     const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
-    const usuarioRegistrado = localStorage.getItem('usuarioTechHub');
+    const token = localStorage.getItem('tokenTechHub');
 
-    // Se a página atual é protegida e não há usuário registrado
-    if (paginasProtegidas.includes(paginaAtual) && !usuarioRegistrado) {
-        window.location.href = 'registro.html';
+    // Se a página atual é protegida e não há token
+    if (paginasProtegidas.includes(paginaAtual) && !token) {
+        window.location.href = 'login.html';
         return false;
     }
 
@@ -174,11 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
     atualizarMenuComRegistro();
 });
 
-// ===== FUNÇÃO PARA ATUALIZAR MENU COM INFORMAÇÕES DE REGISTRO =====
+// ===== FUNÇÃO PARA ATUALIZAR MENU COM INFORMAÇÕES DE AUTENTICAÇÃO =====
 function atualizarMenuComRegistro() {
+    const token = localStorage.getItem('tokenTechHub');
     const usuarioJSON = localStorage.getItem('usuarioTechHub');
     
-    if (!usuarioJSON) return;
+    if (!token || !usuarioJSON) return;
 
     try {
         const usuario = JSON.parse(usuarioJSON);
@@ -191,7 +192,7 @@ function atualizarMenuComRegistro() {
         usuarioInfo.className = 'usuario-info-menu';
         usuarioInfo.innerHTML = `
             <div class="usuario-info-content">
-                <strong>👤 ${usuario.nome}</strong>
+                <strong>👤 ${usuario.nick || usuario.nome}</strong>
                 <small>${usuario.email}</small>
             </div>
             <button class="btn-logout-menu" type="button">Sair</button>
@@ -202,6 +203,12 @@ function atualizarMenuComRegistro() {
 
         // Adicionar evento ao botão logout
         document.querySelector('.btn-logout-menu')?.addEventListener('click', fazerLogout);
+
+        // Ocultar link de registro se estiver logado
+        const linkRegistro = document.getElementById('link-registro');
+        if (linkRegistro) {
+            linkRegistro.style.display = 'none';
+        }
     } catch (e) {
         console.error('Erro ao processar dados do usuário:', e);
     }
@@ -209,9 +216,10 @@ function atualizarMenuComRegistro() {
 
 // ===== FUNÇÃO DE LOGOUT =====
 function fazerLogout() {
-    if (confirm('Deseja realmente sair?\n\nVocê será desconectado e redirecionado para o registro.')) {
+    if (confirm('Deseja realmente sair?\n\nVocê será desconectado e redirecionado para o login.')) {
+        localStorage.removeItem('tokenTechHub');
         localStorage.removeItem('usuarioTechHub');
-        window.location.href = 'registro.html';
+        window.location.href = 'login.html';
     }
 }
 
