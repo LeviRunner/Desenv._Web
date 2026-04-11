@@ -27,6 +27,7 @@
         <button class="menu-close" aria-label="Fechar menu">✕</button>
         <nav>
             <a href="index.html"> Início</a>
+            <a href="registro.html" id="link-registro"> 🔐 Registre-se</a>
             <a href="tags.html"> Tags HTML</a>
             <a href="formularios.html"> Formulários</a>
             <a href="tabelas.html"> Tabelas</a>
@@ -49,6 +50,18 @@
             <div class="info-box">
                 <p><strong>O que é o TechHub?</strong></p>
                 <p>Um portal completo de aprendizado para desenvolvimento web, com recursos interativos, exemplos práticos e documentação detalhada.</p>
+            </div>
+
+            <div class="warning-box">
+                <p><strong>🔐 Sistema de Registro Ativo!</strong></p>
+                <p>
+                    Para acessar as seções de <strong>Tags HTML, Formulários, Tabelas e Listas</strong>, você precisa realizar um rápido registro. 
+                    É simples e rápido! Clique em <strong>"🔐 Registre-se"</strong> no menu ou em qualquer link de seção para criar sua conta.
+                </p>
+                <p>
+                    <strong>✓ O que você consegue após o registro:</strong><br>
+                    Acesso irrestrito a todo o conteúdo educativo e exemplos práticos do TechHub.
+                </p>
             </div>
 
             <p>
@@ -125,6 +138,17 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script src="script.js"></script>
+    <script>
+        // Mostrar/ocultar link de registro baseado no status do usuário
+        document.addEventListener('DOMContentLoaded', () => {
+            const usuarioRegistrado = localStorage.getItem('usuarioTechHub');
+            const linkRegistro = document.getElementById('link-registro');
+
+            if (usuarioRegistrado && linkRegistro) {
+                linkRegistro.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>

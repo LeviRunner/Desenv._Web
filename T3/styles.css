@@ -479,3 +479,199 @@ li {
     color: #4caf50;
     font-weight: bold;
 }
+
+/* ===== PÁGINA DE REGISTRO ===== */
+.registro-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+}
+
+.registro-section {
+    width: 100%;
+    max-width: 600px;
+    border: none;
+    border-top: 4px solid #1a5490;
+    padding: 40px;
+}
+
+.registro-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.registro-card h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1a5490;
+}
+
+.registro-info {
+    background-color: #e3f2fd;
+    border-left: 4px solid #1a5490;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.registro-info ul {
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.registro-info li {
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.registro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #1a5490;
+    box-shadow: 0 0 5px rgba(26, 84, 144, 0.3);
+}
+
+.form-group small {
+    color: #666;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.form-group.checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group.checkbox input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.form-group.checkbox label {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.btn-registrar {
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #1a5490 0%, #0d3d6f 100%);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-registrar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(26, 84, 144, 0.4);
+}
+
+.btn-registrar:active {
+    transform: translateY(0);
+}
+
+.error-box {
+    background-color: #ffebee;
+    border-left: 4px solid #f44336;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 3px;
+    color: #c62828;
+}
+
+.registro-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #999;
+    font-size: 12px;
+}
+
+/* ===== BOTÃO DE LOGOUT ===== */
+.btn-logout {
+    background-color: #f44336;
+    margin-left: 10px;
+}
+
+.btn-logout:hover {
+    background-color: #d32f2f;
+}
+
+.usuario-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #e8f5e9;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.usuario-info span {
+    color: #333;
+}
+
+/* ===== RESPONSIVO REGISTRO ===== */
+@media (max-width: 768px) {
+    .registro-section {
+        padding: 20px;
+    }
+
+    .registro-card {
+        padding: 20px;
+    }
+
+    .registro-card h2 {
+        font-size: 22px;
+    }
+
+    .form-group input,
+    .form-group select {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .btn-registrar {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}

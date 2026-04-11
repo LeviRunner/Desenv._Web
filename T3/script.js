@@ -152,3 +152,131 @@ window.searchFunctions = {
     performSearch,
     clearSearchHighlights
 };
+
+// ===== CONTROLE DE ACESSO - VERIFICAÇÃO DE REGISTRO =====
+function verificarAcessoUsuario() {
+    const paginasProtegidas = ['tags.html', 'formularios.html', 'tabelas.html', 'listas.html'];
+    const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+    const usuarioRegistrado = localStorage.getItem('usuarioTechHub');
+
+    // Se a página atual é protegida e não há usuário registrado
+    if (paginasProtegidas.includes(paginaAtual) && !usuarioRegistrado) {
+        window.location.href = 'registro.html';
+        return false;
+    }
+
+    return true;
+}
+
+// Verificar acesso ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    verificarAcessoUsuario();
+    atualizarMenuComRegistro();
+});
+
+// ===== FUNÇÃO PARA ATUALIZAR MENU COM INFORMAÇÕES DE REGISTRO =====
+function atualizarMenuComRegistro() {
+    const usuarioJSON = localStorage.getItem('usuarioTechHub');
+    
+    if (!usuarioJSON) return;
+
+    try {
+        const usuario = JSON.parse(usuarioJSON);
+        const menuNav = document.querySelector('.floating-menu nav');
+
+        if (!menuNav) return;
+
+        // Adicionar informações do usuário no topo do menu
+        const usuarioInfo = document.createElement('div');
+        usuarioInfo.className = 'usuario-info-menu';
+        usuarioInfo.innerHTML = `
+            <div class="usuario-info-content">
+                <strong>👤 ${usuario.nome}</strong>
+                <small>${usuario.email}</small>
+            </div>
+            <button class="btn-logout-menu" type="button">Sair</button>
+        `;
+
+        // Inserir antes dos links
+        menuNav.parentElement.insertBefore(usuarioInfo, menuNav);
+
+        // Adicionar evento ao botão logout
+        document.querySelector('.btn-logout-menu')?.addEventListener('click', fazerLogout);
+    } catch (e) {
+        console.error('Erro ao processar dados do usuário:', e);
+    }
+}
+
+// ===== FUNÇÃO DE LOGOUT =====
+function fazerLogout() {
+    if (confirm('Deseja realmente sair?\n\nVocê será desconectado e redirecionado para o registro.')) {
+        localStorage.removeItem('usuarioTechHub');
+        window.location.href = 'registro.html';
+    }
+}
+
+// ===== CSS DINÂMICO PARA INFORMAÇÕES DO USUÁRIO NO MENU =====
+const styleUsuarioMenu = document.createElement('style');
+styleUsuarioMenu.textContent = `
+    .usuario-info-menu {
+        padding: 20px 25px;
+        background-color: #1a5490;
+        border-bottom: 2px solid #34495e;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .usuario-info-content {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        flex: 1;
+    }
+
+    .usuario-info-content strong {
+        font-size: 14px;
+        word-break: break-word;
+    }
+
+    .usuario-info-content small {
+        font-size: 11px;
+        opacity: 0.8;
+        word-break: break-word;
+    }
+
+    .btn-logout-menu {
+        padding: 6px 12px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .btn-logout-menu:hover {
+        background-color: #d32f2f;
+    }
+
+    @media (max-width: 768px) {
+        .usuario-info-menu {
+            flex-direction: column;
+            padding: 15px 20px;
+        }
+
+        .usuario-info-content {
+            width: 100%;
+        }
+
+        .btn-logout-menu {
+            width: 100%;
+        }
+    }
+`;
+
+document.head.appendChild(styleUsuarioMenu);

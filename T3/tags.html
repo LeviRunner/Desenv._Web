@@ -27,6 +27,7 @@
         <button class="menu-close" aria-label="Fechar menu">✕</button>
         <nav>
             <a href="index.html">🏠 Início</a>
+            <a href="registro.html" id="link-registro">🔐 Registre-se</a>
             <a href="tags.html">📝 Tags HTML</a>
             <a href="formularios.html">📋 Formulários</a>
             <a href="tabelas.html">📊 Tabelas</a>
@@ -237,6 +238,17 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script src="script.js"></script>
+    <script>
+        // Mostrar/ocultar link de registro baseado no status do usuário
+        document.addEventListener('DOMContentLoaded', () => {
+            const usuarioRegistrado = localStorage.getItem('usuarioTechHub');
+            const linkRegistro = document.getElementById('link-registro');
+
+            if (usuarioRegistrado && linkRegistro) {
+                linkRegistro.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>
