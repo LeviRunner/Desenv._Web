@@ -30,6 +30,17 @@
                     </p>
                 </div>
 
+                <div class="success-box" style="border-left: 4px solid #4CAF50;">
+                    <p>
+                        <strong>🧪 Modo de Teste Ativo!</strong><br>
+                        Você pode fazer login com credenciais de teste:<br>
+                        <code style="background: #f0f0f0; padding: 5px 8px; border-radius: 3px; display: inline-block;">
+                            👤 Usuário: <strong>teste123</strong> | 🔑 Senha: <strong>senha123</strong>
+                        </code><br>
+                        <small>Use essas credenciais para testar a funcionalidade de login sem necessidade de servidor.</small>
+                    </p>
+                </div>
+
                 <form id="formLogin" class="registro-form">
                     <div class="form-group">
                         <label for="nick">
@@ -72,9 +83,14 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="btn-registrar" id="btnLogin">
-                        🔓 Fazer Login
-                    </button>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                        <button type="submit" class="btn-registrar" id="btnLogin">
+                            🔓 Fazer Login
+                        </button>
+                        <button type="button" class="btn-registrar" id="btnTestRapido" style="background-color: #FF9800;">
+                            🧪 Teste Rápido
+                        </button>
+                    </div>
                 </form>
 
                 <div id="mensagemSucesso" class="success-box" style="display: none; margin-top: 20px;">
@@ -143,6 +159,42 @@
                 return;
             }
 
+            // ===== VALIDAÇÃO LOCAL - USUÁRIO DE TESTE =====
+            // Permite testar sem dependência do servidor
+            if (nick === 'teste123' && senha === 'senha123') {
+                console.log('✅ Login LOCAL detectado - Usuário de teste');
+                
+                // Criar sessão de teste localmente
+                localStorage.setItem('tokenTechHub', 'token_teste_' + Date.now());
+                localStorage.setItem('usuarioTechHub', JSON.stringify({
+                    id: 'teste_local_001',
+                    nome: 'Usuário Teste Local',
+                    nick: 'teste123',
+                    email: 'teste@techhub.local',
+                    pais: 'Brasil',
+                    dataRegistro: new Date().toLocaleDateString('pt-BR')
+                }));
+
+                // Salvar nick se solicitado
+                if (salvarNick) {
+                    localStorage.setItem('nickTechHub', nick);
+                } else {
+                    localStorage.removeItem('nickTechHub');
+                }
+
+                // Mostrar mensagem de sucesso
+                document.getElementById('formLogin').style.display = 'none';
+                document.getElementById('mensagemSucesso').style.display = 'block';
+
+                // Redirecionar para página inicial após 2 segundos
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+                return;
+            }
+
+            // ===== VALIDAÇÃO NO SERVIDOR =====
+            // Se não for o usuário de teste, tentar autenticar no servidor
             try {
                 // Enviar para servidor
                 const response = await fetch(`${API_BASE_URL}/api/login`, {
@@ -196,6 +248,28 @@
                 btnLogin.textContent = estadoOriginal;
                 btnLogin.disabled = false;
             }
+        });
+
+        // ===== BOTÃO DE TESTE RÁPIDO =====
+        document.getElementById('btnTestRapido').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Preencher automaticamente as credenciais de teste
+            document.getElementById('nick').value = 'teste123';
+            document.getElementById('senha').value = 'senha123';
+            document.getElementById('salvarNick').checked = true;
+            
+            // Animar os campos para chamar atenção
+            document.getElementById('nick').style.animation = 'pulse 0.5s';
+            document.getElementById('senha').style.animation = 'pulse 0.5s';
+            
+            // Mostrar mensagem informativa
+            console.log('✅ Credenciais de teste preenchidas! Clique em "Fazer Login" para continuar.');
+            
+            // Auto-submit após um pequeno delay (opcional)
+            setTimeout(() => {
+                document.getElementById('formLogin').dispatchEvent(new Event('submit'));
+            }, 300);
         });
 
         function mostrarErro(mensagem) {

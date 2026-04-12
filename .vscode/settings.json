@@ -1,5 +1,5 @@
 {
-  "liveServer.settings.port": 3003,
+  "liveServer.settings.port": 3004,
   "liveServer.settings.host": "localhost",
   "liveServer.settings.root": "/",
   "liveServer.settings.mount": [["/", "."]]

@@ -15,24 +15,31 @@
             <h1> TechHub</h1>
             <p>Centro de aprendizado de desenvolvimento web</p>
         </div>
-        <div class="search-bar">
-            <input type="text" placeholder="Pesquisar na página..." aria-label="Pesquisar">
-            <button type="button">🔍</button>
+        <!-- Botões de Autenticação -->
+        <div class="header-auth">
+            <a href="login.html" class="btn-auth btn-login" id="btn-login-header">Login</a>
+            <a href="registro.html" class="btn-auth btn-registro" id="btn-registro-header">Registre-se</a>
         </div>
         <button class="menu-toggle" aria-label="Abrir menu">☰</button>
     </header>
 
     <!-- ===== MENU FLUTUANTE ===== -->
     <aside class="floating-menu">
-        <button class="menu-close" aria-label="Fechar menu">✕</button>
+        <button class="menu-close" aria-label="Fechar menu">X</button>
+        <div class="menu-search-container">
+            <div class="search-bar">
+                <input type="text" placeholder="Pesquisar na página..." aria-label="Pesquisar">
+                <button type="button">Pesquisar</button>
+            </div>
+        </div>
         <nav>
             <a href="index.html"> Início</a>
-            <a href="registro.html" id="link-registro"> 🔐 Registre-se</a>
+            <a href="registro.html" id="link-registro">Registre-se</a>
             <a href="tags.html"> Tags HTML</a>
             <a href="formularios.html"> Formulários</a>
             <a href="tabelas.html"> Tabelas</a>
             <a href="listas.html"> Listas</a>
-            <a href="graficos.html"> 📊 Gráficos</a>
+            <a href="graficos.html">Gráficos</a>
         </nav>
     </aside>
 
@@ -46,7 +53,7 @@
         </nav>
 
         <section id="inicio">
-            <h2>Bem-vindo ao TechHub! 🎓</h2>
+            <h2>Bem-vindo ao TechHub</h2>
             
             <div class="info-box">
                 <p><strong>O que é o TechHub?</strong></p>
@@ -54,13 +61,13 @@
             </div>
 
             <div class="warning-box">
-                <p><strong>🔐 Sistema de Registro Ativo!</strong></p>
+                <p><strong>Sistema de Registro Ativo!</strong></p>
                 <p>
                     Para acessar as seções de <strong>Tags HTML, Formulários, Tabelas e Listas</strong>, você precisa realizar um rápido registro. 
-                    É simples e rápido! Clique em <strong>"🔐 Registre-se"</strong> no menu ou em qualquer link de seção para criar sua conta.
+                    É simples e rápido! Clique em <strong>"Registre-se"</strong> no menu ou em qualquer link de seção para criar sua conta.
                 </p>
                 <p>
-                    <strong>✓ O que você consegue após o registro:</strong><br>
+                    <strong>O que você consegue após o registro:</strong><br>
                     Acesso irrestrito a todo o conteúdo educativo e exemplos práticos do TechHub.
                 </p>
             </div>
@@ -81,15 +88,15 @@
                 <li><strong>Barra de Pesquisa:</strong> Encontre rapidamente o que procura</li>
             </ul>
 
-            <h3>📚 Como usar este portal:</h3>
+            <h3>Como usar este portal:</h3>
             <ol>
-                <li>Use o <strong>menu flutuante</strong> (clique no ☰) para navegar entre as seções</li>
+                <li>Use o <strong>menu flutuante</strong> (clique no botão de menu) para navegar entre as seções</li>
                 <li>Na barra de pesquisa, procure por termos específicos</li>
                 <li>Clique em qualquer link para explorar tópicos relacionados</li>
                 <li>Estude os exemplos e experimente modificar o código</li>
             </ol>
 
-            <h3>🚀 Tecnologias utilizadas:</h3>
+            <h3>Tecnologias utilizadas:</h3>
             <div class="success-box">
                 <p>
                     <strong>Frontend:</strong> HTML5, CSS3, JavaScript (Vanilla)<br>
