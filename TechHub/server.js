@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -6,13 +7,28 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const app = express();
-const PORT = 3000;
-const SECRET_KEY = 'seu_chave_secreta_super_segura_2026';
+
+// ===== CONFIGURAÇÕES DO AMBIENTE =====
+const PORT = process.env.SERVER_PORT || 3000;
+const HOST = process.env.SERVER_HOST || '0.0.0.0';
+const SECRET_KEY = process.env.SECRET_KEY || 'seu_chave_secreta_super_segura_2026';
+const NODE_ENV = process.env.NODE_ENV || 'development';
+const STATIC_DIR = process.env.STATIC_DIR || path.join(__dirname, 'src', 'T3');
+const USERS_FILE = process.env.USERS_FILE || path.join(__dirname, 'usuarios.json');
+
+// Parse CORS origins
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'http://localhost:3000,http://127.0.0.1:3000')
+    .split(',')
+    .map(origin => origin.trim());
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: ALLOWED_ORIGINS,
+    credentials: true,
+    optionsSuccessStatus: 200
+}));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'src', 'T3')));
+app.use(express.static(STATIC_DIR));
 
 // Arquivo para armazenar usuários
 const USERS_FILE = path.join(__dirname, 'usuarios.json');
@@ -287,9 +303,26 @@ app.get('/api/usuario/:id', (req, res) => {
 });
 
 // INICIAR SERVIDOR
-app.listen(PORT, () => {
+// Ouve em 0.0.0.0 para aceitar conexões de qualquer dispositivo
+app.listen(PORT, HOST, () => {
+    const os = require('os');
+    const networkInterfaces = os.networkInterfaces();
+    let ipAddress = 'localhost';
+    
+    // Procura pelo IP da rede local
+    for (const name of Object.keys(networkInterfaces)) {
+        for (const iface of networkInterfaces[name]) {
+            if (iface.family === 'IPv4' && !iface.internal) {
+                ipAddress = iface.address;
+                break;
+            }
+        }
+    }
+    
     console.log(`\n=================================`);
     console.log(`🚀 TechHub Server rodando em:`);
-    console.log(`   http://localhost:${PORT}`);
+    console.log(`   Ambiente: ${NODE_ENV}`);
+    console.log(`   Local: http://localhost:${PORT}`);
+    console.log(`   Rede: http://${ipAddress}:${PORT}`);
     console.log(`=================================\n`);
 });

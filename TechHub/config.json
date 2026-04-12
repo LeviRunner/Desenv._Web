@@ -1,0 +1,65 @@
+{
+  "site": {
+    "nome": "TechHub",
+    "titulo": "TechHub - Portal de Desenvolvimento Web",
+    "descricao": "Centro completo de aprendizado para desenvolvimento web com recursos interativos, exemplos práticos e documentação detalhada.",
+    "versao": "1.0.0",
+    "autor": "Seu Nome / Suas Iniciais",
+    "email": "contato@techhub.local",
+    "ano": 2026,
+    "licenca": "MIT"
+  },
+  "servidor": {
+    "ambiente": "development",
+    "host": "0.0.0.0",
+    "porta": 3000,
+    "timeout": 30000,
+    "maxRequestSize": "10mb"
+  },
+  "seguranca": {
+    "chaveSecreta": "sua_chave_secreta_super_segura_2026",
+    "tokenExpiracao": "24h",
+    "bcryptSalt": 10
+  },
+  "banco_dados": {
+    "tipo": "json",
+    "arquivo": "./usuarios.json",
+    "backup": "./backups"
+  },
+  "cors": {
+    "ativado": true,
+    "origensPermitidas": [
+      "http://localhost:3000",
+      "http://127.0.0.1:3000",
+      "http://10.0.10.43:3000"
+    ]
+  },
+  "diretorios": {
+    "estaticos": "./src/T3",
+    "uploads": "./uploads",
+    "logs": "./logs"
+  },
+  "logs": {
+    "nivel": "info",
+    "arquivo": "./logs/server.log",
+    "maxTamanho": "10m",
+    "maxArquivos": 5
+  },
+  "recursos": {
+    "secoes": [
+      "início",
+      "tags-html",
+      "formulários",
+      "tabelas",
+      "listas",
+      "gráficos"
+    ],
+    "autenticacao": true,
+    "registro": true,
+    "grafico_chartjs": true
+  },
+  "url": {
+    "desenvolvimento": "http://localhost:3000",
+    "producao": "https://techhub.com.br"
+  }
+}
