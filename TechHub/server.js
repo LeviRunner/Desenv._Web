@@ -30,9 +30,6 @@ app.use(cors({
 app.use(express.json());
 app.use(express.static(STATIC_DIR));
 
-// Arquivo para armazenar usuários
-const USERS_FILE = path.join(__dirname, 'usuarios.json');
-
 // Função para ler usuários do arquivo
 function lerUsuarios() {
     try {
