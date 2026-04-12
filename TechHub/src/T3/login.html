@@ -101,6 +101,13 @@
     <script src="script.js"></script>
     <script src="paises-codigos.js"></script>
     <script>
+        // ===== CONFIGURAÇÃO DE API =====
+        const API_BASE_URL = window.location.origin;
+        // Usar window.location.origin funciona em qualquer ambiente:
+        // - localhost: http://localhost:3000
+        // - Codespace web: https://[nome-codespace].githubpreview.dev
+        // - Servidor remoto: https://seu-dominio.com
+
         // Carregar nick salvo localmente ao abrir a página
         window.addEventListener('DOMContentLoaded', () => {
             const token = localStorage.getItem('tokenTechHub');
@@ -138,7 +145,7 @@
 
             try {
                 // Enviar para servidor
-                const response = await fetch('http://localhost:3000/api/login', {
+                const response = await fetch(`${API_BASE_URL}/api/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

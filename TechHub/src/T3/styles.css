@@ -709,3 +709,81 @@ li {
         font-size: 14px;
     }
 }
+
+/* ===== ESTILOS PARA GRÁFICOS ===== */
+.chart-container {
+    position: relative;
+    max-width: 600px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.table-container table th {
+    background-color: #1a5490;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #0d3d6f;
+}
+
+.table-container table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-container table tbody tr:hover {
+    background-color: #f0f7ff;
+}
+
+.table-container table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+canvas {
+    background: #fff;
+    border-radius: 8px;
+    max-height: 400px;
+}
+
+.chart-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1a5490;
+    font-weight: bold;
+}
+
+.chart-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+@media (max-width: 768px) {
+    .chart-row {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+        max-width: 100%;
+    }
+}

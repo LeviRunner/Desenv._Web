@@ -187,6 +187,13 @@
     <script src="script.js"></script>
     <script src="paises-codigos.js"></script>
     <script>
+        // ===== CONFIGURAÇÃO DE API =====
+        const API_BASE_URL = window.location.origin;
+        // Usar window.location.origin funciona em qualquer ambiente:
+        // - localhost: http://localhost:3000
+        // - Codespace web: https://[nome-codespace].githubpreview.dev
+        // - Servidor remoto: https://seu-dominio.com
+
         const paisSelect = document.getElementById('pais');
         const codigoPaisSpan = document.getElementById('codigoPais');
 
@@ -255,7 +262,7 @@
 
             try {
                 // Enviar para servidor
-                const response = await fetch('http://localhost:3000/api/registrar', {
+                const response = await fetch(`${API_BASE_URL}/api/registrar`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
