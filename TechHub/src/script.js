@@ -3,7 +3,16 @@ const menuToggle = document.querySelector('.menu-toggle');
 const floatingMenu = document.querySelector('.floating-menu');
 const menuOverlay = document.querySelector('.menu-overlay');
 const menuClose = document.querySelector('.menu-close');
-const menuLinks = document.querySelectorAll('.floating-menu nav a');
+const userAvatar = document.querySelector('.user-avatar');
+
+// Seletor atualizado para links do menu
+const menuLinks = document.querySelectorAll('.floating-menu nav a, .menu-auth-link, .menu-user-profile');
+
+// Função para fechar menu
+function closeMenu() {
+    floatingMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+}
 
 // Abrir menu
 menuToggle?.addEventListener('click', () => {
@@ -11,30 +20,31 @@ menuToggle?.addEventListener('click', () => {
     menuOverlay.classList.add('active');
 });
 
-// Fechar menu
-menuClose?.addEventListener('click', () => {
-    floatingMenu.classList.remove('active');
-    menuOverlay.classList.remove('active');
+// Fechar menu ao clicar no botão X
+menuClose?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeMenu();
 });
 
 // Fechar menu ao clicar no overlay
-menuOverlay?.addEventListener('click', () => {
-    floatingMenu.classList.remove('active');
-    menuOverlay.classList.remove('active');
-});
+menuOverlay?.addEventListener('click', closeMenu);
 
 // Fechar menu ao clicar em um link
 menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        floatingMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-    });
+    link.addEventListener('click', closeMenu);
+});
+
+// Fechar menu ao pressionar ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && floatingMenu.classList.contains('active')) {
+        closeMenu();
+    }
 });
 
 // Marcar link ativo baseado na página atual
 function setActiveLink() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    menuLinks.forEach(link => {
+    document.querySelectorAll('.floating-menu nav a').forEach(link => {
         const href = link.getAttribute('href');
         if (href === currentPage || (currentPage === '' && href === 'index.html')) {
             link.classList.add('active');
@@ -44,8 +54,100 @@ function setActiveLink() {
     });
 }
 
+// Gerenciar exibição de usuário/avatar
+function updateUserDisplay() {
+    const usuarioRegistrado = localStorage.getItem('usuarioTechHub');
+    const usuario = usuarioRegistrado ? JSON.parse(usuarioRegistrado) : null;
+    const headerAuth = document.querySelector('.header-auth');
+    const menuUserSection = document.getElementById('menu-user-section');
+    const menuAuthSection = document.getElementById('menu-auth-section');
+    
+    if (usuario && userAvatar) {
+        // Mostrar avatar no header e ocultar botões de auth
+        userAvatar.classList.add('active');
+        const loginBtn = headerAuth.querySelector('.btn-login');
+        const registroBtn = headerAuth.querySelector('.btn-registro');
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (registroBtn) registroBtn.style.display = 'none';
+        
+        // Atualizar menu com informações do usuário
+        if (menuUserSection) {
+            const menuUserName = document.getElementById('menu-user-name');
+            const menuUserAvatar = document.getElementById('menu-user-avatar');
+            
+            if (menuUserName) {
+                menuUserName.textContent = usuario.nick || usuario.nome || 'Usuário';
+            }
+            
+            if (menuUserAvatar) {
+                // Criar inicial do usuário
+                const inicial = (usuario.nick || usuario.nome || 'U').charAt(0).toUpperCase();
+                menuUserAvatar.textContent = inicial;
+            }
+            
+            menuUserSection.style.display = 'flex';
+        }
+        
+        // Ocultar seção de autenticação
+        if (menuAuthSection) {
+            menuAuthSection.style.display = 'none';
+        }
+        
+        // Adicionar evento ao avatar do header para ir à página de perfil
+        userAvatar.addEventListener('click', () => {
+            window.location.href = 'perfil.html';
+        });
+        
+        // Adicionar evento ao nome/avatar do menu para ir à página de perfil
+        const menuUserProfile = document.querySelector('.menu-user-profile');
+        if (menuUserProfile) {
+            menuUserProfile.addEventListener('click', () => {
+                closeMenu();
+                window.location.href = 'perfil.html';
+            });
+        }
+    } else {
+        // Mostrar botões de login/registro
+        const loginBtn = headerAuth?.querySelector('.btn-login');
+        const registroBtn = headerAuth?.querySelector('.btn-registro');
+        if (loginBtn) loginBtn.style.display = '';
+        if (registroBtn) registroBtn.style.display = '';
+        
+        // Ocultar seção de perfil do menu
+        if (menuUserSection) {
+            menuUserSection.style.display = 'none';
+        }
+        
+        // Mostrar seção de autenticação
+        if (menuAuthSection) {
+            menuAuthSection.style.display = '';
+        }
+        
+        userAvatar.classList.remove('active');
+    }
+}
+
+// Adicionar evento ao botão logout
+function setupLogoutButton() {
+    const logoutBtn = document.getElementById('menu-logout-btn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            if (confirm('Deseja realmente sair?')) {
+                localStorage.removeItem('tokenTechHub');
+                localStorage.removeItem('usuarioTechHub');
+                window.location.href = 'login.html';
+            }
+        });
+    }
+}
+
 // Chamar ao carregar a página
-document.addEventListener('DOMContentLoaded', setActiveLink);
+document.addEventListener('DOMContentLoaded', () => {
+    setActiveLink();
+    updateUserDisplay();
+    setupLogoutButton();
+    verificarAcessoUsuario();
+});
 
 // ===== FUNCIONALIDADE DE PESQUISA =====
 const searchInput = document.querySelector('.search-bar input');
@@ -171,120 +273,4 @@ function verificarAcessoUsuario() {
 // Verificar acesso ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     verificarAcessoUsuario();
-    atualizarMenuComRegistro();
 });
-
-// ===== FUNÇÃO PARA ATUALIZAR MENU COM INFORMAÇÕES DE AUTENTICAÇÃO =====
-function atualizarMenuComRegistro() {
-    const token = localStorage.getItem('tokenTechHub');
-    const usuarioJSON = localStorage.getItem('usuarioTechHub');
-    
-    if (!token || !usuarioJSON) return;
-
-    try {
-        const usuario = JSON.parse(usuarioJSON);
-        const menuNav = document.querySelector('.floating-menu nav');
-
-        if (!menuNav) return;
-
-        // Adicionar informações do usuário no topo do menu
-        const usuarioInfo = document.createElement('div');
-        usuarioInfo.className = 'usuario-info-menu';
-        usuarioInfo.innerHTML = `
-            <div class="usuario-info-content">
-                <strong>👤 ${usuario.nick || usuario.nome}</strong>
-                <small>${usuario.email}</small>
-            </div>
-            <button class="btn-logout-menu" type="button">Sair</button>
-        `;
-
-        // Inserir antes dos links
-        menuNav.parentElement.insertBefore(usuarioInfo, menuNav);
-
-        // Adicionar evento ao botão logout
-        document.querySelector('.btn-logout-menu')?.addEventListener('click', fazerLogout);
-
-        // Ocultar link de registro se estiver logado
-        const linkRegistro = document.getElementById('link-registro');
-        if (linkRegistro) {
-            linkRegistro.style.display = 'none';
-        }
-    } catch (e) {
-        console.error('Erro ao processar dados do usuário:', e);
-    }
-}
-
-// ===== FUNÇÃO DE LOGOUT =====
-function fazerLogout() {
-    if (confirm('Deseja realmente sair?\n\nVocê será desconectado e redirecionado para o login.')) {
-        localStorage.removeItem('tokenTechHub');
-        localStorage.removeItem('usuarioTechHub');
-        window.location.href = 'login.html';
-    }
-}
-
-// ===== CSS DINÂMICO PARA INFORMAÇÕES DO USUÁRIO NO MENU =====
-const styleUsuarioMenu = document.createElement('style');
-styleUsuarioMenu.textContent = `
-    .usuario-info-menu {
-        padding: 20px 25px;
-        background-color: #1a5490;
-        border-bottom: 2px solid #34495e;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .usuario-info-content {
-        display: flex;
-        flex-direction: column;
-        color: white;
-        flex: 1;
-    }
-
-    .usuario-info-content strong {
-        font-size: 14px;
-        word-break: break-word;
-    }
-
-    .usuario-info-content small {
-        font-size: 11px;
-        opacity: 0.8;
-        word-break: break-word;
-    }
-
-    .btn-logout-menu {
-        padding: 6px 12px;
-        background-color: #f44336;
-        color: white;
-        border: none;
-        border-radius: 3px;
-        font-size: 12px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        white-space: nowrap;
-        flex-shrink: 0;
-    }
-
-    .btn-logout-menu:hover {
-        background-color: #d32f2f;
-    }
-
-    @media (max-width: 768px) {
-        .usuario-info-menu {
-            flex-direction: column;
-            padding: 15px 20px;
-        }
-
-        .usuario-info-content {
-            width: 100%;
-        }
-
-        .btn-logout-menu {
-            width: 100%;
-        }
-    }
-`;
-
-document.head.appendChild(styleUsuarioMenu);

@@ -172,7 +172,8 @@
                     nick: 'teste123',
                     email: 'teste@techhub.local',
                     pais: 'Brasil',
-                    dataRegistro: new Date().toLocaleDateString('pt-BR')
+                    dataRegistro: new Date().toISOString(),
+                    avatarEmoji: '👨‍💻'
                 }));
 
                 // Salvar nick se solicitado
@@ -218,7 +219,9 @@
                         nome: data.usuario.nome,
                         nick: data.usuario.nick,
                         email: data.usuario.email,
-                        pais: data.usuario.pais
+                        pais: data.usuario.pais,
+                        dataRegistro: data.usuario.dataRegistro || new Date().toISOString(),
+                        avatarEmoji: data.usuario.avatarEmoji || '👨‍💻'
                     }));
 
                     // Salvar nick se solicitado

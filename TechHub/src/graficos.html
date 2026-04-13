@@ -93,29 +93,63 @@
     <header>
         <div class="header-left">
             <h1>TechHub</h1>
-            <p>Centro de aprendizado de desenvolvimento web</p>
         </div>
-        <button class="menu-toggle" aria-label="Abrir menu">Menu</button>
+        
+        <!-- Barra de Pesquisa Centralizada no Header -->
+        <div class="header-search-container">
+            <div class="search-bar header-search">
+                <input type="text" placeholder="Pesquisar..." aria-label="Pesquisar">
+                <button type="button">🔍</button>
+            </div>
+        </div>
+        
+        <!-- Botões de Autenticação e Avatar -->
+        <div class="header-auth">
+            <a href="login.html" class="btn-auth btn-login" id="btn-login-header">Login</a>
+            <a href="registro.html" class="btn-auth btn-registro" id="btn-registro-header">Registre-se</a>
+            <div class="user-avatar" id="user-avatar" title="Perfil do usuário"></div>
+        </div>
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
     </header>
 
     <!-- ===== MENU FLUTUANTE ===== -->
     <aside class="floating-menu">
-        <button class="menu-close" aria-label="Fechar menu">X</button>
-        <div class="menu-search-container">
-            <div class="search-bar">
-                <input type="text" placeholder="Pesquisar na página..." aria-label="Pesquisar">
-                <button type="button">Pesquisar</button>
+        <div class="menu-header">
+            <button class="menu-close" aria-label="Fechar menu" title="Pressione ESC ou clique aqui para fechar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Divisor 1: Pesquisa -->
+        <div class="menu-section">
+            <div class="menu-search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Pesquisar..." aria-label="Pesquisar">
+                    <button type="button">🔍</button>
+                </div>
             </div>
         </div>
-        <nav>
-            <a href="index.html"> Início</a>
-            <a href="registro.html" id="link-registro"> Registre-se</a>
-            <a href="tags.html"> Tags HTML</a>
-            <a href="formularios.html"> Formulários</a>
-            <a href="tabelas.html"> Tabelas</a>
-            <a href="listas.html"> Listas</a>
-            <a href="graficos.html"> Gráficos</a>
-        </nav>
+        
+        <!-- Divisor 2: Navegação Principal -->
+        <div class="menu-section">
+            <nav>
+                <a href="index.html">🏠 Início</a>
+                <a href="tags.html">📝 Tags HTML</a>
+                <a href="formularios.html">📋 Formulários</a>
+                <a href="tabelas.html">📊 Tabelas</a>
+                <a href="listas.html">📑 Listas</a>
+                <a href="graficos.html">📈 Gráficos</a>
+            </nav>
+        </div>
+        
+        <!-- Divisor 3: Autenticação -->
+        <div class="menu-section menu-auth-section">
+            <a href="login.html" id="link-login" class="menu-auth-link">🔐 Entrar</a>
+            <a href="registro.html" id="link-registro" class="menu-auth-link">✏️ Registre-se</a>
+        </div>
     </aside>
 
     <!-- ===== OVERLAY ===== -->

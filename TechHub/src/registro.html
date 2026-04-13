@@ -287,7 +287,9 @@
                         id: data.usuario.id,
                         nome: data.usuario.nome,
                         nick: data.usuario.nick,
-                        email: data.usuario.email
+                        email: data.usuario.email,
+                        dataRegistro: new Date().toISOString(),
+                        avatarEmoji: '👨‍💻'
                     }));
 
                     // Mostrar mensagem de sucesso
