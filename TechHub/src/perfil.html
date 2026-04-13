@@ -254,6 +254,9 @@
 <body>
     <!-- ===== HEADER FIXO ===== -->
     <header>
+        <!-- Botão do Menu Hambúrguer (3 Barras) - PRIMEIRO -->
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+        
         <div class="header-left">
             <!-- Logo SVG -->
             <svg class="logo-circle" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -277,7 +280,6 @@
             <a href="registro.html" class="btn-auth btn-registro" id="btn-registro-header">Registre-se</a>
             <div class="user-avatar" id="user-avatar" title="Perfil do usuário" role="button" tabindex="0"></div>
         </div>
-        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
     </header>
 
     <!-- ===== MENU FLUTUANTE ===== -->
@@ -291,12 +293,13 @@
             </button>
         </div>
         
-        <!-- Divisor 1: Perfil do Usuário (quando logado) -->
+        <!-- Divisor 1: Perfil do Usuário (quando logado) - DESTACADO -->
         <div class="menu-section menu-user-section" id="menu-user-section" style="display: none;">
             <div class="menu-user-profile">
-                <div class="user-profile-avatar" id="menu-user-avatar"></div>
+                <div class="user-profile-avatar" id="menu-user-avatar" role="button" tabindex="0"></div>
                 <div class="user-profile-info">
                     <span class="user-profile-name" id="menu-user-name">Usuário</span>
+                    <small class="user-profile-label">Seu Perfil</small>
                     <button id="menu-logout-btn" class="menu-logout-btn">🚪 Sair</button>
                 </div>
             </div>

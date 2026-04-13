@@ -11,6 +11,9 @@
 <body>
     <!-- ===== HEADER FIXO ===== -->
     <header>
+        <!-- Botão do Menu Hambúrguer (3 Barras) - PRIMEIRO -->
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+        
         <div class="header-left">
             <!-- Logo SVG -->
             <svg class="logo-circle" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,9 +35,10 @@
         <div class="header-auth">
             <a href="login.html" class="btn-auth btn-login" id="btn-login-header">Login</a>
             <a href="registro.html" class="btn-auth btn-registro" id="btn-registro-header">Registre-se</a>
+        </div>
+        <div class="header-user-section">
             <div class="user-avatar" id="user-avatar" title="Perfil do usuário" role="button" tabindex="0"></div>
         </div>
-        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
     </header>
 
     <!-- ===== MENU FLUTUANTE ===== -->
@@ -48,18 +52,7 @@
             </button>
         </div>
         
-        <!-- Divisor 1: Perfil do Usuário (quando logado) -->
-        <div class="menu-section menu-user-section" id="menu-user-section" style="display: none;">
-            <div class="menu-user-profile">
-                <div class="user-profile-avatar" id="menu-user-avatar"></div>
-                <div class="user-profile-info">
-                    <span class="user-profile-name" id="menu-user-name">Usuário</span>
-                    <button id="menu-logout-btn" class="menu-logout-btn">🚪 Sair</button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Divisor 2: Pesquisa -->
+        <!-- Divisor 1: Pesquisa -->
         <div class="menu-section">
             <div class="menu-search-container">
                 <div class="search-bar">
@@ -69,7 +62,7 @@
             </div>
         </div>
         
-        <!-- Divisor 3: Navegação Principal -->
+        <!-- Divisor 2: Navegação Principal -->
         <div class="menu-section">
             <nav>
                 <a href="index.html">🏠 Início</a>
@@ -81,10 +74,20 @@
             </nav>
         </div>
         
-        <!-- Divisor 4: Autenticação (quando não logado) -->
+        <!-- Divisor 3: Autenticação (quando não logado) -->
         <div class="menu-section menu-auth-section" id="menu-auth-section">
             <a href="login.html" id="link-login" class="menu-auth-link">🔑 Entrar</a>
             <a href="registro.html" id="link-registro" class="menu-auth-link">✍️ Registre-se</a>
+        </div>
+        
+        <!-- Divisor 4: Perfil do Usuário (quando logado) - POR ÚLTIMO -->
+        <div class="menu-section menu-user-section" id="menu-user-section" style="display: none;">
+            <div class="menu-user-profile">
+                <div class="user-profile-info">
+                    <span class="user-profile-name" id="menu-user-name">Usuário</span>
+                </div>
+                <button id="menu-logout-btn" class="menu-logout-btn">🚪 Sair</button>
+            </div>
         </div>
     </aside>
 

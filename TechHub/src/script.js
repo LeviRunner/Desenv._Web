@@ -106,6 +106,16 @@ function updateUserDisplay() {
                 window.location.href = 'perfil.html';
             });
         }
+        
+        // Adicionar evento específico ao avatar no menu para ir ao perfil
+        const menuUserAvatar = document.getElementById('menu-user-avatar');
+        if (menuUserAvatar) {
+            menuUserAvatar.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeMenu();
+                window.location.href = 'perfil.html';
+            });
+        }
     } else {
         // Mostrar botões de login/registro
         const loginBtn = headerAuth?.querySelector('.btn-login');
