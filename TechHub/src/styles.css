@@ -20,7 +20,7 @@ header {
     width: 100%;
     background: linear-gradient(135deg, #590066 0%, #3d0052 100%);
     color: white;
-    padding: 12px 30px;
+    padding: 12px 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
     z-index: 100;
     display: flex;
@@ -41,6 +41,7 @@ header h1 {
     display: flex;
     align-items: center;
     gap: 12px;
+    order: 1;
 }
 
 /* ===== LOGO CÍRCULO ===== */
@@ -55,7 +56,8 @@ header h1 {
     flex: 1;
     display: flex;
     justify-content: center;
-    max-width: 350px;
+    max-width: 400px;
+    order: 2;
 }
 
 .header-search {
@@ -101,17 +103,18 @@ header h1 {
 
 /* ===== HEADER AUTH E AVATAR ===== */
 .header-auth {
-    display: flex;
+    display: none;
     gap: 15px;
     align-items: center;
     flex-shrink: 0;
 }
 
 .header-user-section {
-    display: none;
+    display: flex;
     align-items: center;
     gap: 15px;
     flex-shrink: 0;
+    order: 3;
 }
 
 .header-user-section.active {
@@ -157,7 +160,9 @@ header h1 {
     border: 2px solid white;
     cursor: pointer;
     transition: all 0.3s;
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
 }
 
@@ -166,15 +171,13 @@ header h1 {
 }
 
 .user-avatar.active {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(135deg, #bb86fc 0%, #d4a5ff 100%);
 }
 
 /* ===== BOTÃO DO MENU HAMBÚRGUER ===== */
 .menu-toggle {
     flex: 0 0 auto;
-    display: none;
+    display: block;
     background: none;
     border: none;
     color: white;
@@ -183,6 +186,7 @@ header h1 {
     padding: 5px 10px;
     transition: opacity 0.2s ease;
     flex-shrink: 0;
+    order: 0;
 }
 
 .menu-toggle:hover {
