@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Essencial - Portal de Tecnologia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- ===== HEADER FIXO ===== -->
+    <header>
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+        
+        <div class="header-left">
+            <svg class="logo-circle" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" fill="none" stroke="white" stroke-width="2"/>
+                <text x="20" y="25" text-anchor="middle" font-size="18" fill="white" font-weight="bold">TH</text>
+            </svg>
+            <h1>TechHub</h1>
+        </div>
+        
+        <div class="header-search-container">
+            <div class="search-bar header-search">
+                <input type="text" placeholder="Pesquisar..." aria-label="Pesquisar">
+                <button type="button">🔍</button>
+            </div>
+        </div>
+        
+        <div class="header-auth">
+            <a href="login.html" class="btn-auth btn-login" id="btn-login-header">Login</a>
+            <a href="registro.html" class="btn-auth btn-registro" id="btn-registro-header">Registre-se</a>
+        </div>
+        <div class="header-user-section">
+            <div class="user-avatar" id="user-avatar" title="Perfil do usuário" role="button" tabindex="0"></div>
+        </div>
+    </header>
+
+    <!-- ===== MENU FLUTUANTE ===== -->
+    <aside class="floating-menu">
+        <div class="menu-header">
+            <button class="menu-close" aria-label="Fechar menu" title="Pressione ESC ou clique aqui para fechar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="menu-section">
+            <div class="menu-search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Pesquisar..." aria-label="Pesquisar">
+                    <button type="button">🔍</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-section">
+            <nav>
+                <a href="index.html">🏠 Início</a>
+                <a href="tags.html">📝 Tags HTML</a>
+                <a href="formularios.html">📋 Formulários</a>
+                <a href="tabelas.html">📊 Tabelas</a>
+                <a href="listas.html">📑 Listas</a>
+                <a href="graficos.html">📈 Gráficos</a>
+                <a href="demo-css.html">🎨 CSS Demonstração</a>
+                <a href="javascript.html">⚙️ JavaScript</a>
+            </nav>
+        </div>
+        
+        <div class="menu-section menu-auth-section" id="menu-auth-section">
+            <a href="login.html" id="link-login" class="menu-auth-link">🔑 Entrar</a>
+            <a href="registro.html" id="link-registro" class="menu-auth-link">✍️ Registre-se</a>
+        </div>
+        
+        <div class="menu-section menu-user-section" id="menu-user-section" style="display: none;">
+            <div class="menu-user-profile">
+                <div class="user-profile-info">
+                    <span class="user-profile-name" id="menu-user-name">Usuário</span>
+                </div>
+                <button id="menu-logout-btn" class="menu-logout-btn">🚪 Sair</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ===== OVERLAY ===== -->
+    <div class="menu-overlay"></div>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main>
+        <nav class="breadcrumb">
+            <a href="index.html">Início</a> / 
+            <span>JavaScript Essencial</span>
+        </nav>
+
+        <h1 style="color: #bb86fc; font-size: 36px; margin-bottom: 30px; text-align: center;">
+            ⚙️ JavaScript Essencial para Web
+        </h1>
+
+        <!-- ===== SEÇÃO 1: TIPOS DE DADOS ===== -->
+        <section>
+            <h2>📦 Tipos de Dados em JavaScript</h2>
+            
+            <h3>O que são Tipos de Dados?</h3>
+            <p>JavaScript é uma linguagem dinamicamente tipada, o que significa que as variáveis podem conter qualquer tipo de dado e o tipo pode mudar durante a execução.</p>
+
+            <h3>Tipos Primitivos</h3>
+            <div class="example-box">
+                <h4>String (Texto)</h4>
+                <pre><code>
+let nome = "João Silva";
+let mensagem = 'Olá, mundo!';
+let template = `Bem-vindo, ${nome}!`;
+                </code></pre>
+            </div>
+
+            <div class="example-box">
+                <h4>Number (Número)</h4>
+                <pre><code>
+let idade = 25;
+let preco = 19.99;
+let infinito = Infinity;
+let naoEhNumero = NaN; // Not a Number
+                </code></pre>
+            </div>
+
+            <div class="example-box">
+                <h4>Boolean (Verdadeiro/Falso)</h4>
+                <pre><code>
+let ativo = true;
+let desativado = false;
+let resultado = 10 > 5; // true
+                </code></pre>
+            </div>
+
+            <div class="example-box">
+                <h4>Null e Undefined</h4>
+                <pre><code>
+let vazio = null; // Valor ausente intencionalmente
+let indefinido; // undefined - variável declarada mas não inicializada
+                </code></pre>
+            </div>
+
+            <h3>Tipos Complexos</h3>
+            <div class="example-box">
+                <h4>Array (Lista)</h4>
+                <pre><code>
+let frutas = ["maçã", "banana", "laranja"];
+let numeros = [1, 2, 3, 4, 5];
+let misto = [1, "texto", true, null];
+
+// Acessar elementos
+console.log(frutas[0]); // "maçã"
+console.log(frutas.length); // 3
+                </code></pre>
+            </div>
+
+            <div class="example-box">
+                <h4>Object (Objeto)</h4>
+                <pre><code>
+let pessoa = {
+    nome: "Maria",
+    idade: 30,
+    profissao: "Desenvolvedora",
+    ativo: true
+};
+
+// Acessar propriedades
+console.log(pessoa.nome); // "Maria"
+console.log(pessoa["idade"]); // 30
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO 2: OPERADORES ===== -->
+        <section>
+            <h2>➕ Operadores JavaScript</h2>
+
+            <h3>Operadores Aritméticos</h3>
+            <div class="example-box">
+                <pre><code>
+let a = 10;
+let b = 3;
+
+console.log(a + b);  // 13 (adição)
+console.log(a - b);  // 7 (subtração)
+console.log(a * b);  // 30 (multiplicação)
+console.log(a / b);  // 3.333... (divisão)
+console.log(a % b);  // 1 (resto da divisão)
+console.log(a ** b); // 1000 (exponenciação)
+                </code></pre>
+            </div>
+
+            <h3>Operadores de Comparação</h3>
+            <div class="example-box">
+                <pre><code>
+let x = 10;
+let y = "10";
+
+console.log(x == y);   // true (comparação de valor)
+console.log(x === y);  // false (comparação de valor e tipo)
+console.log(x != y);   // false
+console.log(x !== y);  // true
+console.log(x > 5);    // true
+console.log(x <= 10);  // true
+                </code></pre>
+            </div>
+
+            <h3>Operadores Lógicos</h3>
+            <div class="example-box">
+                <pre><code>
+let a = true;
+let b = false;
+
+console.log(a && b);  // false (E lógico)
+console.log(a || b);  // true (OU lógico)
+console.log(!a);      // false (NÃO lógico)
+
+// Uso prático
+if (idade >= 18 && temCarteira) {
+    console.log("Pode dirigir");
+}
+                </code></pre>
+            </div>
+
+            <h3>Operador Ternário (Condicional)</h3>
+            <div class="example-box">
+                <pre><code>
+let idade = 20;
+let status = idade >= 18 ? "Maior de idade" : "Menor de idade";
+console.log(status); // "Maior de idade"
+
+// Sintaxe: condição ? valorSim : valorNao
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO 3: ESTRUTURAS DE CONTROLE ===== -->
+        <section>
+            <h2>🎮 Estruturas de Controle</h2>
+
+            <h3>Condicional IF</h3>
+            <div class="example-box">
+                <pre><code>
+let nota = 85;
+
+if (nota >= 90) {
+    console.log("Excelente!");
+} else if (nota >= 80) {
+    console.log("Bom!");
+} else if (nota >= 70) {
+    console.log("Satisfatório");
+} else {
+    console.log("Insuficiente");
+}
+                </code></pre>
+            </div>
+
+            <h3>Switch Case</h3>
+            <div class="example-box">
+                <pre><code>
+let diaSemana = 3;
+let nomeDia;
+
+switch(diaSemana) {
+    case 1:
+        nomeDia = "Segunda";
+        break;
+    case 2:
+        nomeDia = "Terça";
+        break;
+    case 3:
+        nomeDia = "Quarta";
+        break;
+    default:
+        nomeDia = "Dia inválido";
+}
+
+console.log(nomeDia); // "Quarta"
+                </code></pre>
+            </div>
+
+            <h3>Loops - FOR</h3>
+            <div class="example-box">
+                <pre><code>
+// Loop tradicional
+for (let i = 0; i < 5; i++) {
+    console.log(i); // 0, 1, 2, 3, 4
+}
+
+// For...of (para valores)
+let numeros = [10, 20, 30];
+for (let num of numeros) {
+    console.log(num); // 10, 20, 30
+}
+
+// For...in (para índices/chaves)
+for (let idx in numeros) {
+    console.log(idx); // 0, 1, 2
+}
+                </code></pre>
+            </div>
+
+            <h3>Loops - WHILE</h3>
+            <div class="example-box">
+                <pre><code>
+let contador = 0;
+
+while (contador < 5) {
+    console.log(contador);
+    contador++;
+}
+
+// Do...While (executa pelo menos uma vez)
+let x = 10;
+do {
+    console.log(x);
+    x++;
+} while (x < 5); // Executa uma vez mesmo que a condição seja falsa
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO 4: FUNÇÕES ===== -->
+        <section>
+            <h2>🔧 Funções em JavaScript</h2>
+
+            <h3>Função Tradicional</h3>
+            <div class="example-box">
+                <pre><code>
+// Declaração de função
+function saudacao(nome) {
+    return `Olá, ${nome}!`;
+}
+
+console.log(saudacao("João")); // "Olá, João!"
+
+// Função com múltiplos parâmetros
+function somar(a, b) {
+    return a + b;
+}
+
+console.log(somar(5, 3)); // 8
+                </code></pre>
+            </div>
+
+            <h3>Função Anônima e Arrow Function</h3>
+            <div class="example-box">
+                <pre><code>
+// Função anônima
+const quadrado = function(num) {
+    return num * num;
+};
+
+console.log(quadrado(5)); // 25
+
+// Arrow function (sintaxe moderna)
+const cubo = (num) => {
+    return num * num * num;
+};
+
+// Arrow function simplificada
+const dobro = (num) => num * 2;
+
+console.log(dobro(10)); // 20
+                </code></pre>
+            </div>
+
+            <h3>Parâmetros Padrão e Rest</h3>
+            <div class="example-box">
+                <pre><code>
+// Parâmetro padrão
+function cumprimento(nome = "Visitante") {
+    console.log(`Bem-vindo, ${nome}!`);
+}
+
+cumprimento(); // "Bem-vindo, Visitante!"
+cumprimento("Ana"); // "Bem-vindo, Ana!"
+
+// Rest parameters (aceita múltiplos argumentos)
+function soma(...numeros) {
+    let total = 0;
+    for (let num of numeros) {
+        total += num;
+    }
+    return total;
+}
+
+console.log(soma(1, 2, 3, 4, 5)); // 15
+                </code></pre>
+            </div>
+
+            <h3>Escopo de Variáveis</h3>
+            <div class="example-box">
+                <pre><code>
+var global = "Escopo global";
+
+function exemplo() {
+    let local = "Escopo local";
+    const constante = "Não pode mudar";
+    
+    console.log(global); // "Escopo global" ✓
+    console.log(local);  // "Escopo local" ✓
+}
+
+console.log(local); // ReferenceError - não existe aqui
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO 5: MANIPULAÇÃO DO DOM ===== -->
+        <section>
+            <h2>🖥️ Manipulação do DOM</h2>
+
+            <h3>Selecionando Elementos</h3>
+            <div class="example-box">
+                <pre><code>
+// Por ID
+let elemento = document.getElementById("meuId");
+
+// Por classe
+let elementos = document.getElementsByClassName("minhaClasse");
+
+// Por seletor CSS (moderno e recomendado)
+let primeiro = document.querySelector(".minhaClasse");
+let todos = document.querySelectorAll(".minhaClasse");
+
+// Por tag
+let paragrafos = document.getElementsByTagName("p");
+                </code></pre>
+            </div>
+
+            <h3>Modificando Conteúdo e Atributos</h3>
+            <div class="example-box">
+                <pre><code>
+let elemento = document.getElementById("titulo");
+
+// Modificar conteúdo
+elemento.textContent = "Novo texto";
+elemento.innerHTML = "&lt;strong&gt;Texto em negrito&lt;/strong&gt;";
+
+// Adicionar/remover classes
+elemento.classList.add("ativo");
+elemento.classList.remove("inativo");
+elemento.classList.toggle("destaque");
+
+// Modificar atributos
+elemento.setAttribute("data-id", "123");
+elemento.removeAttribute("disabled");
+elemento.id = "novoId";
+                </code></pre>
+            </div>
+
+            <h3>Criando e Removendo Elementos</h3>
+            <div class="example-box">
+                <pre><code>
+// Criar novo elemento
+let novoParagrafo = document.createElement("p");
+novoParagrafo.textContent = "Este é um parágrafo novo";
+novoParagrafo.classList.add("destaque");
+
+// Adicionar ao DOM
+document.body.appendChild(novoParagrafo);
+
+// Remover elemento
+let elemento = document.getElementById("antiga");
+elemento.remove();
+
+// Ou remover via pai
+let pai = document.getElementById("container");
+let filho = document.getElementById("meuFilho");
+pai.removeChild(filho);
+                </code></pre>
+            </div>
+
+            <h3>Eventos e Event Listeners</h3>
+            <div class="example-box">
+                <pre><code>
+// Adicionar listener para clique
+let botao = document.getElementById("meuBotao");
+botao.addEventListener("click", function() {
+    console.log("Botão clicado!");
+});
+
+// Com arrow function
+botao.addEventListener("click", () => {
+    console.log("Botão clicado!");
+});
+
+// Outros eventos
+document.addEventListener("keydown", (e) => {
+    console.log(`Tecla pressionada: ${e.key}`);
+});
+
+let input = document.querySelector("input");
+input.addEventListener("change", (e) => {
+    console.log(`Novo valor: ${e.target.value}`);
+});
+
+// Remover listener
+botao.removeEventListener("click", meuCallback);
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO 6: ARRAYS E MÉTODOS ===== -->
+        <section>
+            <h2>📋 Métodos de Array</h2>
+
+            <h3>Métodos Principais</h3>
+            <div class="example-box">
+                <pre><code>
+let numeros = [1, 2, 3, 4, 5];
+
+// map() - transforma cada elemento
+let dobrados = numeros.map(n => n * 2);
+console.log(dobrados); // [2, 4, 6, 8, 10]
+
+// filter() - filtra elementos
+let pares = numeros.filter(n => n % 2 === 0);
+console.log(pares); // [2, 4]
+
+// reduce() - reduz a um único valor
+let soma = numeros.reduce((acc, n) => acc + n, 0);
+console.log(soma); // 15
+
+// find() - encontra primeiro elemento
+let primeiroPar = numeros.find(n => n % 2 === 0);
+console.log(primeiroPar); // 2
+
+// forEach() - itera sobre elementos
+numeros.forEach((n, idx) => {
+    console.log(`Índice ${idx}: ${n}`);
+});
+                </code></pre>
+            </div>
+
+            <h3>Manipulação de Arrays</h3>
+            <div class="example-box">
+                <pre><code>
+let frutas = ["maçã", "banana"];
+
+// Adicionar elementos
+frutas.push("laranja"); // Final
+frutas.unshift("morango"); // Início
+
+// Remover elementos
+frutas.pop(); // Final
+frutas.shift(); // Início
+
+// Verificar inclusão
+console.log(frutas.includes("banana")); // true
+
+// Índice de elemento
+console.log(frutas.indexOf("maçã")); // índice
+
+// Concatenar arrays
+let lista1 = [1, 2];
+let lista2 = [3, 4];
+let completa = lista1.concat(lista2);
+console.log(completa); // [1, 2, 3, 4]
+
+// Ordenar
+let numeros = [3, 1, 4, 1, 5];
+numeros.sort((a, b) => a - b);
+console.log(numeros); // [1, 1, 3, 4, 5]
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO 7: OBJETOS ===== -->
+        <section>
+            <h2>📦 Trabalhar com Objetos</h2>
+
+            <h3>Criando e Acessando Objetos</h3>
+            <div class="example-box">
+                <pre><code>
+// Objeto literal
+let livro = {
+    titulo: "JavaScript Moderno",
+    autor: "Jon Doe",
+    paginas: 450,
+    disponivel: true,
+    
+    // Método
+    descricao() {
+        return `${this.titulo} por ${this.autor}`;
+    }
+};
+
+// Acessar propriedades
+console.log(livro.titulo); // "JavaScript Moderno"
+console.log(livro["autor"]); // "Jon Doe"
+console.log(livro.descricao()); // "JavaScript Moderno por Jon Doe"
+
+// Modificar/adicionar propriedades
+livro.ano = 2024;
+livro.paginas = 500;
+
+// Deletar propriedade
+delete livro.disponivel;
+                </code></pre>
+            </div>
+
+            <h3>Iterando sobre Objetos</h3>
+            <div class="example-box">
+                <pre><code>
+let pessoa = {
+    nome: "Carlos",
+    idade: 28,
+    profissao: "Programador"
+};
+
+// for...in (itera chaves)
+for (let chave in pessoa) {
+    console.log(`${chave}: ${pessoa[chave]}`);
+}
+
+// Object.keys() - obter todas as chaves
+let chaves = Object.keys(pessoa);
+console.log(chaves); // ["nome", "idade", "profissao"]
+
+// Object.values() - obter todos os valores
+let valores = Object.values(pessoa);
+console.log(valores); // ["Carlos", 28, "Programador"]
+
+// Object.entries() - pares chave-valor
+let entradas = Object.entries(pessoa);
+for (let [chave, valor] of entradas) {
+    console.log(`${chave}: ${valor}`);
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO 8: BOAS PRÁTICAS ===== -->
+        <section>
+            <h2>⭐ Boas Práticas em JavaScript</h2>
+
+            <h3>1. Use let e const em vez de var</h3>
+            <div class="example-box">
+                <pre><code>
+// ❌ Evitar
+var nome = "João";
+
+// ✓ Preferir
+let nome = "João"; // Pode mudar
+const idade = 25;  // Não pode mudar
+                </code></pre>
+            </div>
+
+            <h3>2. Nomes Significativos</h3>
+            <div class="example-box">
+                <pre><code>
+// ❌ Nomes ruins
+let x = 10;
+let a = "João";
+function process() { }
+
+// ✓ Nomes bons
+let idadeUsuario = 10;
+let nomeCliente = "João";
+function processarPedidos() { }
+                </code></pre>
+            </div>
+
+            <h3>3. Tratamento de Erros</h3>
+            <div class="example-box">
+                <pre><code>
+try {
+    let resultado = JSON.parse('JSON inválido');
+} catch (erro) {
+    console.error("Erro ao fazer parse:", erro.message);
+} finally {
+    console.log("Limpeza realizada");
+}
+
+// Validação de entrada
+function dividir(a, b) {
+    if (b === 0) {
+        throw new Error("Divisão por zero não permitida!");
+    }
+    return a / b;
+}
+                </code></pre>
+            </div>
+
+            <h3>4. Documentação e Comentários</h3>
+            <div class="example-box">
+                <pre><code>
+/**
+ * Calcula o preço final com desconto
+ * @param {number} preco - Preço original
+ * @param {number} desconto - Percentual de desconto
+ * @returns {number} Preço final
+ */
+function calcularPrecoComDesconto(preco, desconto) {
+    // Validar entrada
+    if (preco < 0 || desconto < 0) {
+        return 0;
+    }
+    return preco * (1 - desconto / 100);
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO 9: EXEMPLO PRÁTICO ===== -->
+        <section>
+            <h2>🎯 Exemplo Prático: Calculadora Simples</h2>
+
+            <h3>HTML + JavaScript</h3>
+            <div class="example-box">
+                <pre><code>
+// HTML
+&lt;input type="number" id="num1" placeholder="Número 1"&gt;
+&lt;input type="number" id="num2" placeholder="Número 2"&gt;
+&lt;button id="btnSomar"&gt;+&lt;/button&gt;
+&lt;button id="btnSubtrair"&gt;-&lt;/button&gt;
+&lt;div id="resultado"&gt;&lt;/div&gt;
+
+// JavaScript
+const num1 = document.getElementById("num1");
+const num2 = document.getElementById("num2");
+const btnSomar = document.getElementById("btnSomar");
+const btnSubtrair = document.getElementById("btnSubtrair");
+const resultado = document.getElementById("resultado");
+
+function exibirResultado(valor) {
+    resultado.textContent = `Resultado: ${valor}`;
+}
+
+btnSomar.addEventListener("click", () => {
+    let r = parseFloat(num1.value) + parseFloat(num2.value);
+    exibirResultado(r);
+});
+
+btnSubtrair.addEventListener("click", () => {
+    let r = parseFloat(num1.value) - parseFloat(num2.value);
+    exibirResultado(r);
+});
+                </code></pre>
+            </div>
+        </section>
+
+        <!-- ===== SEÇÃO FINAL ===== -->
+        <section style="text-align: center; background: linear-gradient(135deg, #590066 0%, #3d0052 100%); border: none;">
+            <h2 style="color: white;">Continue Aprendendo!</h2>
+            <p style="font-size: 16px; color: #e0e0e0;">
+                JavaScript é uma linguagem poderosa e em constante evolução. 
+                Pratique regularmente, experimente novos conceitos e construa projetos reais!
+            </p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    
+    <style>
+        .example-box {
+            background-color: #0a0a0a;
+            border: 1px solid #590066;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .example-box h4 {
+            color: #ffeb3b;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .example-box pre {
+            margin: 0;
+            color: #4CAF50;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .example-box code {
+            background-color: #000;
+            padding: 10px;
+            display: block;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        section p {
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 30px 20px;
+            }
+
+            .example-box {
+                padding: 12px;
+            }
+
+            .example-box pre {
+                font-size: 11px;
+            }
+        }
+    </style>
+</body>
+
+</html>
