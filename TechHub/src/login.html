@@ -262,9 +262,20 @@
             document.getElementById('senha').value = 'senha123';
             document.getElementById('salvarNick').checked = true;
             
-            // Animar os campos para chamar atenção
-            document.getElementById('nick').style.animation = 'pulse 0.5s';
-            document.getElementById('senha').style.animation = 'pulse 0.5s';
+            // Animar os campos para chamar atenção (com possibilidade de repetir)
+            const nickInput = document.getElementById('nick');
+            const senhaInput = document.getElementById('senha');
+            
+            // Função para aplicar animação permitindo repetição
+            function animateField(field) {
+                field.style.animation = 'none';
+                // Trigger reflow para reiniciar a animação
+                void field.offsetHeight;
+                field.style.animation = 'pulse 0.5s';
+            }
+            
+            animateField(nickInput);
+            animateField(senhaInput);
             
             // Mostrar mensagem informativa
             console.log('✅ Credenciais de teste preenchidas! Clique em "Fazer Login" para continuar.');

@@ -151,12 +151,46 @@ function setupLogoutButton() {
     }
 }
 
+// ===== GERENCIAR AUTO-LOGIN VIA URL (MODO DE TESTE) =====
+// Uso: qualquer-pagina.html?teste=ativo
+// Ativa automaticamente uma sessão de teste sem precisar fazer registro
+function setupTestModeViaURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // Se a URL contém o parâmetro ?teste=ativo
+    if (urlParams.get('teste') === 'ativo') {
+        // Criar sessão de teste
+        localStorage.setItem('usuarioTechHub', JSON.stringify({
+            nome: 'Usuário Teste',
+            email: 'teste@techhub.local',
+            nick: 'usuario_teste',
+            dataRegistro: new Date().toLocaleDateString('pt-BR')
+        }));
+        localStorage.setItem('tokenTechHub', 'token_teste_' + Date.now());
+        
+        console.log('✅ Modo de teste ativado via URL!');
+        console.log('📝 Acesso irrestrito a todas as seções do TechHub');
+        
+        // Recarregar a página sem o parâmetro para limpar a URL (opcional)
+        // window.location.href = window.location.pathname;
+    }
+    
+    // Mostrar/ocultar link de registro baseado no status do usuário
+    const usuarioRegistrado = localStorage.getItem('usuarioTechHub');
+    const linkRegistro = document.getElementById('link-registro');
+
+    if (usuarioRegistrado && linkRegistro) {
+        linkRegistro.style.display = 'none';
+    }
+}
+
 // Chamar ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     setActiveLink();
     updateUserDisplay();
     setupLogoutButton();
     verificarAcessoUsuario();
+    setupTestModeViaURL();
 });
 
 // ===== FUNCIONALIDADE DE PESQUISA =====
@@ -182,11 +216,10 @@ function performSearch(query) {
     let found = 0;
     highlightableElements.forEach(element => {
         if (element.innerText.toLowerCase().includes(searchTerm)) {
-            element.style.backgroundColor = '#ffeb3b';
-            element.style.transition = 'background-color 0.3s';
+            element.classList.add('highlight-busca');
             found++;
         } else {
-            element.style.backgroundColor = '';
+            element.classList.remove('highlight-busca');
         }
     });
 
@@ -195,7 +228,7 @@ function performSearch(query) {
     } else {
         alert(`${found} resultado(s) encontrado(s) para: "${query}"\nOs elementos foram destacados em amarelo.`);
         // Scroll até o primeiro resultado
-        const firstHighlight = mainContent.querySelector('[style*="background-color"]');
+        const firstHighlight = mainContent.querySelector('.highlight-busca');
         if (firstHighlight) {
             firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
@@ -218,11 +251,7 @@ searchInput?.addEventListener('keypress', (e) => {
 
 // Limpar destaques ao focar no input
 searchInput?.addEventListener('focus', () => {
-    const highlighted = document.querySelectorAll('[style*="background-color: rgb(255, 235, 59)"]');
-    highlighted.forEach(element => {
-        element.style.backgroundColor = '';
-    });
-    searchInput.value = '';
+    clearSearchHighlights();
 });
 
 // ===== SCROLL SUAVE PARA LINKS INTERNOS =====
@@ -240,23 +269,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== DETECTAR CLIQUE FORA DO MENU PARA FECHAR =====
-document.addEventListener('click', (e) => {
-    const isMenuClick = e.target.closest('.floating-menu');
-    const isToggleClick = e.target.closest('.menu-toggle');
-
-    if (!isMenuClick && !isToggleClick && floatingMenu?.classList.contains('active')) {
-        floatingMenu.classList.remove('active');
-        menuOverlay?.classList.remove('active');
-    }
-});
-
 // ===== FUNÇÃO PARA LIMPAR RESULTADOS DE BUSCA =====
 function clearSearchHighlights() {
-    const allElements = document.querySelectorAll('[style*="background-color: rgb(255, 235, 59)"]');
+    const allElements = document.querySelectorAll('.highlight-busca');
     allElements.forEach(element => {
-        element.style.backgroundColor = '';
+        element.classList.remove('highlight-busca');
     });
+    const searchInput = document.querySelector('.search-bar input');
+    if (searchInput) {
+        searchInput.value = '';
+    }
 }
 
 // Exportar funções para uso em outros scripts

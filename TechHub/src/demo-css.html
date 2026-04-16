@@ -3,63 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demonstração Prática de CSS - Utilizações Importantes</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>CSS Demonstração - TechHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ===== HEADER FIXO ===== -->
+    <header>
+        <!-- Botão do Menu Hambúrguer (3 Barras) - PRIMEIRO -->
+        <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+        
+        <div class="header-left">
+            <!-- Logo SVG -->
+            <svg class="logo-circle" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="20" r="18" fill="none" stroke="white" stroke-width="2"/>
+                <text x="20" y="25" text-anchor="middle" font-size="18" fill="white" font-weight="bold">TH</text>
+            </svg>
+            <h1>TechHub</h1>
+        </div>
+        
+        <!-- Barra de Pesquisa Centralizada no Header -->
+        <div class="header-search-container">
+            <div class="search-bar header-search">
+                <input type="text" placeholder="Pesquisar..." aria-label="Pesquisar">
+                <button type="button">🔍</button>
+            </div>
+        </div>
+        
+        <!-- Botões de Autenticação e Avatar -->
+        <div class="header-auth">
+            <a href="login.html" class="btn-auth btn-login" id="btn-login-header">Login</a>
+            <a href="registro.html" class="btn-auth btn-registro" id="btn-registro-header">Registre-se</a>
+        </div>
+        <div class="header-user-section">
+            <div class="user-avatar" id="user-avatar" title="Perfil do usuário" role="button" tabindex="0"></div>
+        </div>
+    </header>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-        }
+    <!-- ===== MENU FLUTUANTE ===== -->
+    <aside class="floating-menu">
+        <div class="menu-header">
+            <button class="menu-close" aria-label="Fechar menu" title="Pressione ESC ou clique aqui para fechar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Divisor 1: Pesquisa -->
+        <div class="menu-section">
+            <div class="menu-search-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Pesquisar..." aria-label="Pesquisar">
+                    <button type="button">🔍</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Divisor 2: Navegação Principal -->
+        <div class="menu-section">
+            <nav>
+                <a href="index.html">🏠 Início</a>
+                <a href="tags.html">📝 Tags HTML</a>
+                <a href="formularios.html">📋 Formulários</a>
+                <a href="tabelas.html">📊 Tabelas</a>
+                <a href="listas.html">📑 Listas</a>
+                <a href="graficos.html">📈 Gráficos</a>
+                <a href="demo-css.html">🎨 CSS Demonstração</a>
+            </nav>
+        </div>
+        
+        <!-- Divisor 3: Autenticação (quando não logado) -->
+        <div class="menu-section menu-auth-section" id="menu-auth-section">
+            <a href="login.html" id="link-login" class="menu-auth-link">🔑 Entrar</a>
+            <a href="registro.html" id="link-registro" class="menu-auth-link">✍️ Registre-se</a>
+        </div>
+        
+        <!-- Divisor 4: Perfil do Usuário (quando logado) - POR ÚLTIMO -->
+        <div class="menu-section menu-user-section" id="menu-user-section" style="display: none;">
+            <div class="menu-user-profile">
+                <div class="user-profile-info">
+                    <span class="user-profile-name" id="menu-user-name">Usuário</span>
+                </div>
+                <button id="menu-logout-btn" class="menu-logout-btn">🚪 Sair</button>
+            </div>
+        </div>
+    </aside>
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
+    <!-- ===== OVERLAY ===== -->
+    <div class="menu-overlay"></div>
 
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main>
+        <nav class="breadcrumb"></nav>
 
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        header p {
-            font-size: 1.1em;
-            opacity: 0.95;
-        }
-
-        .content {
-            padding: 40px;
+        <style>
+        .demo-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #1a1a1a;
+            border-left: 5px solid #590066;
+            border-radius: 8px;
         }
 
         .demo-section {
             margin-bottom: 50px;
             padding: 30px;
-            background: #f8f9fa;
-            border-left: 5px solid #667eea;
+            background: #1a1a1a;
+            border-left: 5px solid #590066;
             border-radius: 8px;
         }
 
         .demo-section h2 {
-            color: #667eea;
+            color: #bb86fc;
             margin-bottom: 20px;
             font-size: 1.8em;
             display: flex;
@@ -73,11 +129,11 @@
         }
 
         .demo-box {
-            background: white;
+            background: #262626;
             padding: 20px;
             margin: 15px 0;
             border-radius: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid #333;
         }
 
         /* 1. CORES E FUNDOS */
@@ -121,8 +177,9 @@
         .font-demo p {
             margin: 10px 0;
             padding: 10px;
-            background: white;
-            border-left: 3px solid #667eea;
+            background: #262626;
+            border-left: 3px solid #bb86fc;
+            color: #e0e0e0;
         }
 
         .font-size-sm { font-size: 0.875em; }
@@ -225,23 +282,6 @@
             padding: 10px;
             color: white;
             border-radius: 5px;
-        }
-
-        .position-fixed {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #2ecc71;
-            padding: 15px;
-            color: white;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            font-size: 1.5em;
         }
 
         /* 5. FLEXBOX */
@@ -446,28 +486,20 @@
         }
 
         .responsive-card {
-            background: white;
-            border: 2px solid #ddd;
+            background: #1a1a1a;
+            border: 2px solid #333;
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
         .responsive-card h3 {
-            color: #667eea;
+            color: #bb86fc;
             margin-bottom: 10px;
         }
 
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
         code {
-            background: #f4f4f4;
+            background: #262626;
             padding: 2px 6px;
             border-radius: 3px;
             font-family: 'Courier New', monospace;
@@ -475,57 +507,67 @@
         }
 
         .code-example {
-            background: #2c3e50;
-            color: #ecf0f1;
+            background: #1a1a1a;
+            color: #e0e0e0;
             padding: 15px;
             border-radius: 5px;
             overflow-x: auto;
             margin: 10px 0;
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
+            border-left: 3px solid #bb86fc;
         }
 
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8em;
-            }
+        /* ===== BOTÃO FLUTUANTE BACK-TO-TOP ===== */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #590066 0%, #3d0052 100%);
+            border: 2px solid #bb86fc;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            z-index: 95;
+            box-shadow: 0 4px 12px rgba(89, 0, 102, 0.4);
+        }
 
-            .content {
-                padding: 20px;
-            }
+        #back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(89, 0, 102, 0.6);
+        }
 
-            .demo-section {
-                padding: 20px;
-            }
-
-            .position-fixed {
-                bottom: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-                font-size: 1.2em;
-            }
+        #back-to-top.show {
+            display: flex;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Demonstração Prática de CSS</h1>
-            <p>Utilizações Importantes e Exemplos Interativos</p>
-        </header>
+    <!-- (Header, menu e overlay já foram adicionados acima) -->
 
-        <div class="content">
-            <!-- 1. CORES E FUNDOS -->
-            <section class="demo-section">
-                <h2>Cores e Fundos</h2>
-                <p>Aprenda a trabalhar com cores sólidas, gradientes e opacidade em CSS.</p>
-                <div class="color-demo">
-                    <div class="color-box color-solid">Cor Sólida</div>
-                    <div class="color-box color-gradient">Gradiente</div>
-                    <div class="color-box color-rgba">RGBA</div>
-                </div>
-                <div class="code-example">
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main>
+        <nav class="breadcrumb"></nav>
+
+        <!-- 1. CORES E FUNDOS -->
+        <section class="demo-section">
+            <h2>Cores e Fundos</h2>
+            <p>Aprenda a trabalhar com cores sólidas, gradientes e opacidade em CSS.</p>
+            <div class="color-demo">
+                <div class="color-box color-solid">Cor Sólida</div>
+                <div class="color-box color-gradient">Gradiente</div>
+                <div class="color-box color-rgba">RGBA</div>
+            </div>
+            <div class="code-example">
 background-color: #3498db;<br>
 background: linear-gradient(45deg, #e74c3c, #f39c12);<br>
 background-color: rgba(46, 204, 113, 0.7);
@@ -778,15 +820,49 @@ transform: translate(20px, -20px);
                     </div>
                 </div>
             </section>
-        </div>
 
-        <footer>
-            <p>&copy; 2026 - Demonstração Prática de CSS | Prof. Alexandre Paixão</p>
-            <p>Página de referência com exemplos interativos de CSS</p>
-        </footer>
-    </div>
+        <!-- ===== BOTÃO FLUTUANTE BACK-TO-TOP ===== -->
+        <button id="back-to-top" title="Voltar ao topo">↑</button>
+    </main>
 
-    <!-- Elemento Fixed que aparece no rodapé -->
-    <div class="position-fixed">📖</div>
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 TechHub - Portal de Desenvolvimento Web. Todos os direitos reservados.</p>
+        <p>Desenvolvido com para educadores e alunos</p>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="script.js"></script>
+    <script>
+        // ===== FUNCIONALIDADE DO BOTÃO BACK-TO-TOP ===== 
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        // Mostrar/ocultar botão ao scrollar
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Voltar ao topo ao clicar no botão
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Voltar ao topo também ao pressionar Home
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Home') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
 </body>
 </html>

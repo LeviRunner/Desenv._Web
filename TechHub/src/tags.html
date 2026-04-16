@@ -278,41 +278,7 @@
 
     <!-- ===== SCRIPTS ===== -->
     <script src="script.js"></script>
-    <script>
-        // ===== AUTO-LOGIN VIA URL (MODO DE TESTE) =====
-        // Uso: index.html?teste=ativo
-        // Ativa automaticamente uma sessão de teste sem precisar fazer registro
-        document.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            // Se a URL contém o parâmetro ?teste=ativo
-            if (urlParams.get('teste') === 'ativo') {
-                // Criar sessão de teste
-                localStorage.setItem('usuarioTechHub', JSON.stringify({
-                    nome: 'Usuário Teste',
-                    email: 'teste@techhub.local',
-                    nick: 'usuario_teste',
-                    dataRegistro: new Date().toLocaleDateString('pt-BR')
-                }));
-                localStorage.setItem('tokenTechHub', 'token_teste_' + Date.now());
-                
-                console.log('✅ Modo de teste ativado via URL!');
-                console.log('📝 Acesso irrestrito a todas as seções do TechHub');
-                
-                // Recarregar a página sem o parâmetro para limpar a URL
-                // Comentar a linha abaixo se preferir manter ?teste=ativo na URL
-                // window.location.href = 'tags.html';
-            }
-            
-            // Mostrar/ocultar link de registro baseado no status do usuário
-            const usuarioRegistrado = localStorage.getItem('usuarioTechHub');
-            const linkRegistro = document.getElementById('link-registro');
 
-            if (usuarioRegistrado && linkRegistro) {
-                linkRegistro.style.display = 'none';
-            }
-        });
-    </script>
 </body>
 
 </html>

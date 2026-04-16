@@ -1,3 +1,21 @@
+/* ===== VARIÁVEIS CSS (CUSTOM PROPERTIES) ===== */
+:root {
+    --cor-primaria: #590066;
+    --cor-secundaria: #3d0052;
+    --cor-destaque: #1a5490;
+    --cor-texto: #e0e0e0;
+    --cor-texto-secundario: #999;
+    --cor-texto-inverso: #000;
+    --bg-fundo: #000000;
+    --bg-card: #1a1a1a;
+    --bg-hover: #262626;
+    --cor-highlight: #ffeb3b;
+    --cor-botao-primary: #bb86fc;
+    --cor-sucesso: #4CAF50;
+    --cor-erro: #f44336;
+    --cor-warning: #ffc107;
+}
+
 /* Estilos globais */
 * {
     margin: 0;
@@ -8,8 +26,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    background-color: #000000;
-    color: #e0e0e0;
+    background-color: var(--bg-fundo);
+    color: var(--cor-texto);
 }
 
 /* ===== HEADER FIXO ===== */
@@ -651,6 +669,15 @@ footer {
     50% {
         background-color: #333;
     }
+}
+
+/* ===== CLASSE DE DESTAQUE DE PESQUISA ===== */
+.highlight-busca {
+    background-color: var(--cor-highlight) !important;
+    color: var(--cor-texto-inverso) !important;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+    padding: 2px 4px;
 }
 
 .floating-menu.active {
