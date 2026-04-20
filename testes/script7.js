@@ -16,20 +16,12 @@
 
 // o arquivo math.php vai servir para fazer buscas no banco de dados e retornar os resultados para o script7.js
 
-// Conexão com o banco de dados
 
-// Mapa de países com seus códigos telefônicos
-const paisesCodigos = {
-    'Brasil': '+55',
-    'Portugal': '+351',
-    'México': '+52',
-    'Argentina': '+54',
-    'Chile': '+56',
-    'Colômbia': '+57',
-    'Peru': '+51',
-    'Espanha': '+34',
-    'Outro': '+1'
-};
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+    host: 'teste7',
+    user: 'sql7',
+    password: 'sq17',
+    database: 'db7',
+})
 
-// Exportar para uso global
-window.paisesCodigos = paisesCodigos;
