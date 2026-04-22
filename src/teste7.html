@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <!-- Define a codificação de caracteres como UTF-8 para suporte a caracteres especiais -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configura a viewport para dispositivos móveis, garantindo responsividade -->
+    <title>Login - Sistema de Acesso</title>
+    <!-- Título da página que aparece na aba do navegador -->
+
+    <link rel="stylesheet" href="style7.css">
+
+</head>
+
+<body>
+    <!-- ===== CONTEÚDO PRINCIPAL DA PÁGINA ===== -->
+
+    <div class="login-box">
+        <!-- Container principal do formulário de login -->
+        <h2>Acesso ao Sistema</h2>
+        <!-- Título da seção de login -->
+
+        <form id="formLogin">
+            <!-- Formulário de login com ID para manipulação via JavaScript -->
+
+            <input type="text" id="id_usuario" name="id_usuario" placeholder="ID do Usuário (ex: 001)" required maxlength="3" pattern="\d{3}">
+            <!-- Campo para ID do usuário (tipo text para suportar zeros à esquerda) -->
+            <!-- Atributo 'required' torna o campo obrigatório -->
+
+            <input type="password" id="senha" name="senha" placeholder="Senha" required>
+            <!-- Campo de senha (tipo password oculta os caracteres digitados) -->
+            <!-- Atributo 'required' torna o campo obrigatório -->
+
+            <button type="submit">Entrar</button>
+            <!-- Botão de submit para enviar o formulário -->
+        </form>
+
+        <div id="mensagem"></div>
+        <!-- Container para exibir mensagens de feedback (sucesso/erro) -->
+    </div>
+
+    <!-- ===== JAVASCRIPT EXTERNO ===== -->
+    <script src="script7.js"></script>
+    <!-- Carrega arquivo JavaScript externo para funcionalidades interativas -->
+</body>
+</html>

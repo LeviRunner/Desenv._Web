@@ -1,6 +1,27 @@
 {
-  "liveServer.settings.port": 3008,
-  "liveServer.settings.host": "localhost",
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.host": "127.0.0.1",
   "liveServer.settings.root": "/",
-  "liveServer.settings.mount": [["/", "."]]
+  "liveServer.settings.mount": [
+    [
+      "/",
+      "."
+    ]
+  ],
+  "sqltools.connections": [
+  {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "127.0.0.1",
+      "port": 3306,
+      "driver": "MySQL", 
+      "name": "Conexão Teste7",
+      "database": "teste7",
+      "username": "sql7",
+      "password": "sq7"
+    }
+  ]
 }

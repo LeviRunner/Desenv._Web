@@ -1,0 +1,125 @@
+/* ===== ESTILOS CSS PARA O SISTEMA DE LOGIN E DASHBOARD ===== */
+
+body {
+    font-family: Arial, sans-serif;
+    /* Define a fonte padrão para toda a página */
+    display: flex;
+    /* Usa flexbox para centralizar o conteúdo */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    min-height: 100vh;
+    /* Altura mínima da viewport */
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.login-box, .container {
+    background: #fff;
+    /* Fundo branco para o container */
+    padding: 20px;
+    /* Espaçamento interno */
+    border-radius: 8px;
+    /* Bordas arredondadas */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    /* Sombra sutil */
+    width: 300px;
+    /* Largura fixa */
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px; /* Dashboard mais largo para a tabela */
+}
+
+input {
+    width: 100%;
+    /* Largura total do container pai */
+    padding: 10px;
+    /* Espaçamento interno */
+    margin: 10px 0;
+    /* Margem vertical */
+    border: 1px solid #ccc;
+    /* Borda cinza clara */
+    border-radius: 4px;
+    /* Bordas arredondadas */
+    box-sizing: border-box;
+    /* Inclui padding e border na largura total */
+}
+
+button {
+    width: 100%;
+    /* Largura total */
+    padding: 10px;
+    /* Espaçamento interno */
+    background: #28a745;
+    /* Cor de fundo verde */
+    color: white;
+    /* Texto branco */
+    border: none;
+    /* Remove borda padrão */
+    border-radius: 4px;
+    /* Bordas arredondadas */
+    cursor: pointer;
+    /* Cursor de mão ao passar o mouse */
+}
+
+button:hover {
+    background: #218838;
+    /* Cor mais escura no hover */
+}
+
+#mensagem {
+    margin-top: 15px;
+    /* Margem superior */
+    text-align: center;
+    /* Texto centralizado */
+    font-weight: bold;
+    /* Texto em negrito */
+}
+
+/* ===== ESTILOS PARA A TABELA ===== */
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.status-autorizado { color: #28a745; font-weight: bold; }
+.status-negado { color: #dc3545; }
+
+.btn-logout {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #dc3545;
+    border-radius: 4px;
+}
+
+.btn-logout:hover {
+    background-color: #dc3545;
+    color: white;
+}
